@@ -91,7 +91,7 @@ day_in_the_life_trajectories_male<-day_in_the_life_trajectories[which(day_in_the
 
 ggplot(day_in_the_life_trajectories_female,aes(x=Trajectory_pattern)) + geom_bar(aes(color=factor(Age))) + coord_flip()
 
-ggplot(day_in_the_life_trajectories_male,aes(x=Trajectory_pattern)) + geom_bar(aes(color=factor(Age)) + theme(axis.text.x=element_text(angle = 90, colour = "black")) 
+ggplot(day_in_the_life_trajectories_male,aes(x=Trajectory_pattern)) + geom_bar(aes(color=factor(Age))) + theme(axis.text.x=element_text(angle = 90, colour = "black"))
 
 
 
