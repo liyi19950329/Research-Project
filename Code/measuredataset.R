@@ -1,6 +1,9 @@
+install.packages("clusterProfiler")
+library(infotheo)
 library(plyr)
 library(lubridate)
 library(ggplot2)
+library(stringr)
 encounter <- read.csv("/Users/liyi/Desktop/day_in_the_life.csv")
 
 #------how many participants in every unique location type------#
@@ -79,3 +82,26 @@ nrow(count(encounter[,1]))
 nrow(encounter)
 unique(encounter[,1])
 nrow(Freq <- tapply(encounter[,1], encounter[,6],nrow(unique(encounter[,1]))))
+
+#extract trajectory patterns from processed data set 
+day_in_the_life_trajectories <- read.csv("/Users/liyi/Desktop/day_in_the_life_drop_suffix_age_processed.csv")
+day_in_the_life_trajectories_female<-day_in_the_life_trajectories[which(day_in_the_life_trajectories$Gender == 2), ]
+day_in_the_life_trajectories_male<-day_in_the_life_trajectories[which(day_in_the_life_trajectories$Gender == 1), ]
+
+
+ggplot(day_in_the_life_trajectories_female,aes(x=Trajectory_pattern)) + geom_bar(aes(color=factor(Age))) + coord_flip()
+
+ggplot(day_in_the_life_trajectories_male,aes(x=Trajectory_pattern)) + geom_bar(aes(color=factor(Age)) + theme(axis.text.x=element_text(angle = 90, colour = "black")) 
+
+
+
+
+
+
+
+
+
+
+
+
+

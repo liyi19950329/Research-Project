@@ -7,7 +7,7 @@ from xlutils.copy import copy
 
 
 
-filename = '~/Desktop/day_in_the_life 2 3.xls'
+filename = '~/Desktop/day_in_the_life_drop_suffix.xls'
 
 
 def merge_locationType():
@@ -16,9 +16,31 @@ def merge_locationType():
     df = df.groupby(['Subject', 'Age', 'Gender'])['Location Type'].apply(ab)
     df = df.reset_index()
     DataFrame(df).to_excel(filename, sheet_name='day_in_the_life', index=False, header=True)
+
 def ab(df):
     return '-'.join(df.values)
 
+def recalculate_age():
+    df = pd.read_excel(filename, index=None)
+    for index, row in df.iterrows():
+        if (row['Age'] >= 20) & (row['Age'] < 30):
+            df.loc[index,'Age'] = "20-30"
+        elif (row['Age'] < 20):
+            df.loc[index,'Age'] = "0-20"
+        elif (row['Age'] >= 30) & (row['Age'] < 40):
+            df.loc[index,'Age'] = "30-40"
+        elif (row['Age'] >= 40) & (row['Age'] < 50):
+            df.loc[index,'Age'] = "40-50"
+        elif (row['Age'] >= 50) & (row['Age'] < 60):
+            df.loc[index,'Age'] = "50-60"
+        elif (row['Age'] >= 60) & (row['Age'] < 70):
+            df.loc[index,'Age'] = "60-70"
+        elif (row['Age'] >= 70) & (row['Age'] < 80):
+            df.loc[index,'Age'] = "70-80"
+        else:
+            df.loc[index,'Age'] = "80-100"
+    print(df)
+    DataFrame(df).to_excel(filename, sheet_name='day_in_the_life', index=False, header=True)
 
 # def replace():
 #     file = open(filename1, 'r')
@@ -145,4 +167,5 @@ if __name__ == '__main__':
     # files = os.listdir(cwd)  # Get all the files in that directory
     # print("Files in %r: %s" % (cwd, files))
     # replace()
+    recalculate_age()
     merge_locationType()
