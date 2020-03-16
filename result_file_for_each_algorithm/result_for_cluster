@@ -1,0 +1,121 @@
+=== Run information ===
+
+Scheme:       weka.clusterers.EM -I 100 -N -1 -X 10 -max -1 -ll-cv 1.0E-6 -ll-iter 1.0E-6 -M 1.0E-6 -K 10 -num-slots 1 -S 100
+Relation:     day_in_the_life_after_processing
+Instances:    83
+Attributes:   4
+              Subject
+              Age
+              Gender
+              Location Type
+Test mode:    evaluate on training data
+
+
+=== Clustering model (full training set) ===
+
+
+EM
+==
+
+Number of clusters selected by cross validation: 2
+Number of iterations performed: 2
+
+
+                                                                                                                                                                                                                                                                              Cluster
+Attribute                                                                                                                                                                                                                                                                           0        1
+                                                                                                                                                                                                                                                                               (0.72)   (0.28)
+===============================================================================================================================================================================================================================================================================================
+Subject
+  mean                                                                                                                                                                                                                                                                         262.141  296.313
+  std. dev.                                                                                                                                                                                                                                                                   137.8937 143.1791
+
+Age
+  mean                                                                                                                                                                                                                                                                         48.8171  45.3481
+  std. dev.                                                                                                                                                                                                                                                                    18.1017  14.7486
+
+Gender
+  mean                                                                                                                                                                                                                                                                               2   1.0004
+  std. dev.                                                                                                                                                                                                                                                                     0.0005   0.0209
+
+Location Type
+  Home                                                                                                                                                                                                                                                                          5.9989   7.0011
+  Home-Private Transport-Retail and hospitality-Retail and hospitality-Private Transport-Home-Private Transport-Retail and hospitality-Private Transport-Home-Private Transport-Retail and hospitality-Private Transport                                                        1.9999   1.0001
+  Home-Car journey-Sport and recreation-Retail and hospitality-Car journey-Home                                                                                                                                                                                                      2        1
+  Home-Public spaces-Home-Retail and hospitality-Home                                                                                                                                                                                                                           1.9999   1.0001
+  Home-Private Transport-Other -Private Transport-Retail and hospitality-Home-Work-Retail and hospitality-Home                                                                                                                                                                  1.9999   1.0001
+  Home-Work-Study-Home-Retail and hospitality-Arts and culture-Home-Study-Home                                                                                                                                                                                                  1.9999   1.0001
+  Home-Retail and hospitality-Home                                                                                                                                                                                                                                                   2        2
+  Home-Private Transport-Sport and recreation-Retail and hospitality-Private Transport-Home                                                                                                                                                                                     1.9999   1.0001
+  Home-Public spaces-Study-Public spaces-Home-Car journey-Study-Private Transport-Home                                                                                                                                                                                          1.9999   1.0001
+  Home-Public spaces-Retail and hospitality-Home-Private Transport-Arts and culture-Private Transport-Home                                                                                                                                                                           2        1
+  Other -Home-Other -Home                                                                                                                                                                                                                                                       1.9999   1.0001
+  Home-Private Transport-Private Transport-Home-Private Transport-Retail and hospitality-Private Transport-Other -Private Transport-Home-Private Transport-Other -Private Transport-Home                                                                                        1.9999   1.0001
+  Home-Public spaces-Other -Home-Other -Home                                                                                                                                                                                                                                    1.9999   1.0001
+  Home-Private Transport-Work-Private Transport-Home                                                                                                                                                                                                                            3.9998   1.0002
+  Home-Public spaces-Study-Public spaces-Home-Retail and hospitality-Retail and hospitality-Home-Other -Study-Home                                                                                                                                                              1.9998   1.0002
+  Home-Retail and hospitality-Private Transport-Retail and hospitality-Retail and hospitality-Private Transport-Retail and hospitality-Study-Private Transport-Sport and recreation-Home-Home                                                                                   1.9999   1.0001
+  Home-Public Transport-Work-Public Transport-Home                                                                                                                                                                                                                                   1        2
+  Home-Public spaces-Home-Private Transport-Other -Private Transport-Study-Private Transport-Work-Home-Work-Home                                                                                                                                                                1.9998   1.0002
+  Home-Private Transport-Retail and hospitality-Home-Work-Private Transport-Home                                                                                                                                                                                                1.9999   1.0001
+  Home-Private Transport-Other -Private Transport-Home                                                                                                                                                                                                                          1.9995   2.0005
+  Home-Private Transport-Study-Work-Study-Home                                                                                                                                                                                                                                       1        2
+  Home-Private Transport-Other -Home                                                                                                                                                                                                                                            1.9998   1.0002
+  Home-Public Transport-Study-Public Transport-Home                                                                                                                                                                                                                                  1        2
+  Home-Other -Retail and hospitality-Home                                                                                                                                                                                                                                       2.9998   1.0002
+  Home-Private Transport-Study-Private Transport-Private Transport-Study-Private Transport-Work-Private Transport-Retail and hospitality-Private Transport-Private Transport-Other -Private Transport                                                                           1.9998   1.0002
+  Home-Private Transport-Study-Private Transport-Retail and hospitality-Home-Other -Study-Home-Private Transport-Home                                                                                                                                                           1.9998   1.0002
+  Home-Sport and recreation-Retail and hospitality-Retail and hospitality-Retail and hospitality-Home                                                                                                                                                                           1.9999   1.0001
+  Other -Private Transport-Other -Private Transport-Private Transport-Home                                                                                                                                                                                                           2        1
+  Work-Home                                                                                                                                                                                                                                                                          1        2
+  Home-Private Transport-Study-Sport and recreation-Retail and hospitality-Retail and hospitality-Private Transport-Home-Car journey-Retail and hospitality-Private Transport-Home-Car journey-Study-Private Transport-Home                                                          1        2
+  Home-Retail and hospitality-Retail and hospitality-Retail and hospitality-Private Transport-Other -Private Transport-Home                                                                                                                                                     1.9999   1.0001
+  Home-Other -Home-Public spaces-Home-Other -Retail and hospitality-Home                                                                                                                                                                                                        1.9999   1.0001
+  Home-Private Transport-Work-Private Transport-Home-Private Transport-Other -Private Transport-Home                                                                                                                                                                            1.9998   1.0002
+  Home-Private Transport-Study-Retail and hospitality-Home                                                                                                                                                                                                                      1.9999   1.0001
+  Home-Private Transport-Work-Private Transport-Study-Private Transport-Home                                                                                                                                                                                                    1.9998   1.0002
+  Home-Public Transport-Public Transport-Retail and hospitality-Work-Retail and hospitality-Work-Public Transport-Public Transport-Home                                                                                                                                         1.9999   1.0001
+  Home-Study-Home-Retail and hospitality-Home                                                                                                                                                                                                                                   1.9998   1.0002
+  Home-Work-Home                                                                                                                                                                                                                                                                     1        4
+  Home-Private Transport-Other -Private Transport-Home-Private Transport-Retail and hospitality-Private Transport-Home-Private Transport-Other -Private Transport-Home                                                                                                               2        1
+  Home-Private Transport-Retail and hospitality-Home                                                                                                                                                                                                                            1.9998   1.0002
+  Home-Private Transport-Work-Home                                                                                                                                                                                                                                              1.9998   1.0002
+  Home-Private Transport-Study-Private Transport-Home-Home                                                                                                                                                                                                                           1        2
+  Home-Sport and recreation-Retail and hospitality-Retail and hospitality-Home-Home-Public spaces-Home-Study-Home-Other -Home-Retail and hospitality-Home                                                                                                                       1.9999   1.0001
+  Home-Study-Home-Study-Home                                                                                                                                                                                                                                                    1.9998   1.0002
+  Home-Private Transport-Retail and hospitality-Private Transport-Retail and hospitality-Private Transport-Home                                                                                                                                                                 1.9998   1.0002
+  Home-Private Transport-Retail and hospitality-Retail and hospitality-Arts and culture-Retail and hospitality-Private Transport-Home                                                                                                                                           1.9999   1.0001
+  Home-Other -Car journey-Home-Arts and culture-Home                                                                                                                                                                                                                            1.9998   1.0002
+  Home-Private Transport-Sport and recreation-Private Transport-Home                                                                                                                                                                                                            1.9997   1.0003
+  Home-Public spaces-Private Transport-Retail and hospitality-Private Transport-Retail and hospitality-Home                                                                                                                                                                          2        1
+  Home-Other -Sport and recreation-Home-Study-Home-Sport and recreation-Home                                                                                                                                                                                                    1.9997   1.0003
+  Home-Public spaces-Home                                                                                                                                                                                                                                                       1.9997   1.0003
+  Home-Private Transport-Study-Car journey-Home-Retail and hospitality-Home-Car journey-Retail and hospitality-Car journey-Home                                                                                                                                                      1        2
+  Home-Car journey-Study-Car journey-Study-Private Transport-Home-Private Transport-Public spaces-Car journey-Public spaces-Public spaces-Work-Public spaces-Car journey-Retail and hospitality-Car journey-Home                                                                1.9998   1.0002
+  Home-Retail and hospitality-Retail and hospitality-Public spaces-Retail and hospitality-Retail and hospitality-Home                                                                                                                                                           1.9998   1.0002
+  Home-Private Transport-Study-Private Transport-Retail and hospitality-Private Transport-Home-Private Transport-Study-Private Transport-Other -Private Transport-Home                                                                                                          1.9997   1.0003
+  Home-Public Transport-Work-Public Transport-Retail and hospitality-Public Transport-Public Transport-Public Transport-Home                                                                                                                                                         1        2
+  Home-Private Transport-Work-Private Transport-Work-Private Transport-Home                                                                                                                                                                                                          1        2
+  Home-Private Transport-Study-Home-Private Transport-Study-Home-Private Transport-Study-Home-Private Transport-Study-Home                                                                                                                                                           1        2
+  Home-Other -Home                                                                                                                                                                                                                                                                   1        2
+  Home-Private Transport-Other -Private Transport-Other -Private Transport-Home-Other -Other -Home-Other -Other -Other -Home                                                                                                                                                         1        2
+  Home-Public spaces-Home-Public spaces-Private Transport-Retail and hospitality-Private Transport-Home                                                                                                                                                                         1.9997   1.0003
+  Home-Private Transport-Work-Private Transport-Retail and hospitality-Work-Private Transport-Home                                                                                                                                                                              1.9998   1.0002
+  Home-Public spaces-Study-Public spaces-Retail and hospitality-Public spaces-Home-Private Transport-Arts and culture-Private Transport-Retail and hospitality-Retail and hospitality-Retail and hospitality-Private Transport-Home-Public spaces-Study-Public spaces-Home      1.9997   1.0003
+  Home-Private Transport-Work-Private Transport-Retail and hospitality-Home                                                                                                                                                                                                     1.9998   1.0002
+  Home-Private Transport-Public spaces-Private Transport-Home                                                                                                                                                                                                                   1.9997   1.0003
+  Home-Public spaces-Other -Retail and hospitality-Home-Public spaces-Retail and hospitality-Sport and recreation-Home                                                                                                                                                          1.9997   1.0003
+  [total]                                                                                                                                                                                                                                                                       125.99    89.01
+
+
+Time taken to build model (full training data) : 0.22 seconds
+
+=== Model and evaluation on training set ===
+
+Clustered Instances
+
+0      60 ( 72%)
+1      23 ( 28%)
+
+
+Log likelihood: -9.4227
+

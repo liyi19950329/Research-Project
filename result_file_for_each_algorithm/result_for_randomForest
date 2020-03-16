@@ -1,0 +1,262 @@
+=== Run information ===
+
+Scheme:       weka.classifiers.trees.RandomForest -P 100 -I 100 -num-slots 1 -K 0 -M 1.0 -V 0.001 -S 1
+Relation:     day_in_the_life_after_processing
+Instances:    83
+Attributes:   4
+              Subject
+              Age
+              Gender
+              Location Type
+Test mode:    10-fold cross-validation
+
+=== Classifier model (full training set) ===
+
+RandomForest
+
+Bagging with 100 iterations and base learner
+
+weka.classifiers.trees.RandomTree -K 0 -M 1.0 -V 0.001 -S 1 -do-not-check-capabilities
+
+Time taken to build model: 0.11 seconds
+
+=== Predictions on test data ===
+
+inst#,actual,predicted,error,prediction
+1,12:'Home-Private Transport-Private Transport-Home-Private Transport-Retail and hospitality-Private Transport-Other -Private Transport-Home-Private Transport-Other -Private Transport-Home',15:Home-Public spaces-Study-Public spaces-Home-Retail and hospitality-Retail and hospitality-Home-Other -Study-Home,+,0.18
+2,32:'Home-Other -Home-Public spaces-Home-Other -Retail and hospitality-Home',34:Home-Private Transport-Study-Retail and hospitality-Home,+,0.43
+3,56:'Home-Public Transport-Work-Public Transport-Retail and hospitality-Public Transport-Public Transport-Public Transport-Home',38:Home-Work-Home,+,0.52
+4,1:Home,5:Home-Private Transport-Other -Private Transport-Retail and hospitality-Home-Work-Retail and hospitality-Home,+,0.23
+5,52:'Home-Private Transport-Study-Car journey-Home-Retail and hospitality-Home-Car journey-Retail and hospitality-Car journey-Home',38:Home-Work-Home,+,0.24
+6,4:'Home-Public spaces-Home-Retail and hospitality-Home',1:Home,+,0.65
+7,24:'Home-Other -Retail and hospitality-Home',7:Home-Retail and hospitality-Home,+,0.25
+8,10:'Home-Public spaces-Retail and hospitality-Home-Private Transport-Arts and culture-Private Transport-Home',1:Home,+,0.46
+9,39:'Home-Private Transport-Other -Private Transport-Home-Private Transport-Retail and hospitality-Private Transport-Home-Private Transport-Other -Private Transport-Home',41:Home-Private Transport-Work-Home,+,0.26
+1,33:'Home-Private Transport-Work-Private Transport-Home-Private Transport-Other -Private Transport-Home',35:Home-Private Transport-Work-Private Transport-Study-Private Transport-Home,+,0.32
+2,20:'Home-Private Transport-Other -Private Transport-Home',22:Home-Private Transport-Other -Home,+,0.4
+3,14:'Home-Private Transport-Work-Private Transport-Home',35:Home-Private Transport-Work-Private Transport-Study-Private Transport-Home,+,0.22
+4,1:Home,45:Home-Private Transport-Retail and hospitality-Private Transport-Retail and hospitality-Private Transport-Home,+,0.36
+5,48:'Home-Private Transport-Sport and recreation-Private Transport-Home',47:Home-Other -Car journey-Home-Arts and culture-Home,+,0.45
+6,61:'Home-Public spaces-Home-Public spaces-Private Transport-Retail and hospitality-Private Transport-Home',60:Home-Private Transport-Other -Private Transport-Other -Private Transport-Home-Other -Other -Home-Other -Other -Other -Home,+,0.3
+7,29:Work-Home,27:Home-Sport and recreation-Retail and hospitality-Retail and hospitality-Retail and hospitality-Home,+,0.36
+8,21:'Home-Private Transport-Study-Work-Study-Home',22:Home-Private Transport-Other -Home,+,0.65
+9,31:'Home-Retail and hospitality-Retail and hospitality-Retail and hospitality-Private Transport-Other -Private Transport-Home',32:Home-Other -Home-Public spaces-Home-Other -Retail and hospitality-Home,+,0.25
+1,50:'Home-Other -Sport and recreation-Home-Study-Home-Sport and recreation-Home',51:Home-Public spaces-Home,+,0.27
+2,20:'Home-Private Transport-Other -Private Transport-Home',63:Home-Public spaces-Study-Public spaces-Retail and hospitality-Public spaces-Home-Private Transport-Arts and culture-Private Transport-Retail and hospitality-Retail and hospitality-Retail and hospitality-Private Transport-Home-Public spaces-Study-Public spaces-Home,+,0.41
+3,14:'Home-Private Transport-Work-Private Transport-Home',12:Home-Private Transport-Private Transport-Home-Private Transport-Retail and hospitality-Private Transport-Other -Private Transport-Home-Private Transport-Other -Private Transport-Home,+,0.21
+4,1:Home,54:Home-Retail and hospitality-Retail and hospitality-Public spaces-Retail and hospitality-Retail and hospitality-Home,+,0.45
+5,57:'Home-Private Transport-Work-Private Transport-Work-Private Transport-Home',58:Home-Private Transport-Study-Home-Private Transport-Study-Home-Private Transport-Study-Home-Private Transport-Study-Home,+,0.54
+6,66:'Home-Public spaces-Other -Retail and hospitality-Home-Public spaces-Retail and hospitality-Sport and recreation-Home',63:Home-Public spaces-Study-Public spaces-Retail and hospitality-Public spaces-Home-Private Transport-Arts and culture-Private Transport-Retail and hospitality-Retail and hospitality-Retail and hospitality-Private Transport-Home-Public spaces-Study-Public spaces-Home,+,0.47
+7,3:'Home-Car journey-Sport and recreation-Retail and hospitality-Car journey-Home',2:Home-Private Transport-Retail and hospitality-Retail and hospitality-Private Transport-Home-Private Transport-Retail and hospitality-Private Transport-Home-Private Transport-Retail and hospitality-Private Transport,+,0.38
+8,17:'Home-Public Transport-Work-Public Transport-Home',16:Home-Retail and hospitality-Private Transport-Retail and hospitality-Retail and hospitality-Private Transport-Retail and hospitality-Study-Private Transport-Sport and recreation-Home-Home,+,0.34
+9,49:'Home-Public spaces-Private Transport-Retail and hospitality-Private Transport-Retail and hospitality-Home',54:Home-Retail and hospitality-Retail and hospitality-Public spaces-Retail and hospitality-Retail and hospitality-Home,+,0.29
+1,9:'Home-Public spaces-Study-Public spaces-Home-Car journey-Study-Private Transport-Home',6:Home-Work-Study-Home-Retail and hospitality-Arts and culture-Home-Study-Home,+,0.33
+2,37:'Home-Study-Home-Retail and hospitality-Home',1:Home,+,0.22
+3,14:'Home-Private Transport-Work-Private Transport-Home',30:Home-Private Transport-Study-Sport and recreation-Retail and hospitality-Retail and hospitality-Private Transport-Home-Car journey-Retail and hospitality-Private Transport-Home-Car journey-Study-Private Transport-Home,+,0.3
+4,1:Home,1:Home,,0.67
+5,36:'Home-Public Transport-Public Transport-Retail and hospitality-Work-Retail and hospitality-Work-Public Transport-Public Transport-Home',31:Home-Retail and hospitality-Retail and hospitality-Retail and hospitality-Private Transport-Other -Private Transport-Home,+,0.23
+6,22:'Home-Private Transport-Other -Home',21:Home-Private Transport-Study-Work-Study-Home,+,0.44
+7,26:'Home-Private Transport-Study-Private Transport-Retail and hospitality-Home-Other -Study-Home-Private Transport-Home',25:Home-Private Transport-Study-Private Transport-Private Transport-Study-Private Transport-Work-Private Transport-Retail and hospitality-Private Transport-Private Transport-Other -Private Transport,+,0.36
+8,18:'Home-Public spaces-Home-Private Transport-Other -Private Transport-Study-Private Transport-Work-Home-Work-Home',15:Home-Public spaces-Study-Public spaces-Home-Retail and hospitality-Retail and hospitality-Home-Other -Study-Home,+,0.44
+1,19:'Home-Private Transport-Retail and hospitality-Home-Work-Private Transport-Home',24:Home-Other -Retail and hospitality-Home,+,0.26
+2,45:'Home-Private Transport-Retail and hospitality-Private Transport-Retail and hospitality-Private Transport-Home',1:Home,+,0.34
+3,5:'Home-Private Transport-Other -Private Transport-Retail and hospitality-Home-Work-Retail and hospitality-Home',2:Home-Private Transport-Retail and hospitality-Retail and hospitality-Private Transport-Home-Private Transport-Retail and hospitality-Private Transport-Home-Private Transport-Retail and hospitality-Private Transport,+,0.22
+4,1:Home,62:Home-Private Transport-Work-Private Transport-Retail and hospitality-Work-Private Transport-Home,+,0.27
+5,58:'Home-Private Transport-Study-Home-Private Transport-Study-Home-Private Transport-Study-Home-Private Transport-Study-Home',57:Home-Private Transport-Work-Private Transport-Work-Private Transport-Home,+,0.46
+6,55:'Home-Private Transport-Study-Private Transport-Retail and hospitality-Private Transport-Home-Private Transport-Study-Private Transport-Other -Private Transport-Home',51:Home-Public spaces-Home,+,0.36
+7,47:'Home-Other -Car journey-Home-Arts and culture-Home',48:Home-Private Transport-Sport and recreation-Private Transport-Home,+,0.58
+8,63:'Home-Public spaces-Study-Public spaces-Retail and hospitality-Public spaces-Home-Private Transport-Arts and culture-Private Transport-Retail and hospitality-Retail and hospitality-Retail and hospitality-Private Transport-Home-Public spaces-Study-Public spaces-Home',65:Home-Private Transport-Public spaces-Private Transport-Home,+,0.18
+1,53:'Home-Car journey-Study-Car journey-Study-Private Transport-Home-Private Transport-Public spaces-Car journey-Public spaces-Public spaces-Work-Public spaces-Car journey-Retail and hospitality-Car journey-Home',45:Home-Private Transport-Retail and hospitality-Private Transport-Retail and hospitality-Private Transport-Home,+,0.21
+2,38:Home-Work-Home,38:Home-Work-Home,,0.22
+3,23:'Home-Public Transport-Study-Public Transport-Home',17:Home-Public Transport-Work-Public Transport-Home,+,0.15
+4,1:Home,47:Home-Other -Car journey-Home-Arts and culture-Home,+,0.23
+5,16:'Home-Retail and hospitality-Private Transport-Retail and hospitality-Retail and hospitality-Private Transport-Retail and hospitality-Study-Private Transport-Sport and recreation-Home-Home',14:Home-Private Transport-Work-Private Transport-Home,+,0.46
+6,41:'Home-Private Transport-Work-Home',45:Home-Private Transport-Retail and hospitality-Private Transport-Retail and hospitality-Private Transport-Home,+,0.29
+7,35:'Home-Private Transport-Work-Private Transport-Study-Private Transport-Home',33:Home-Private Transport-Work-Private Transport-Home-Private Transport-Other -Private Transport-Home,+,0.23
+8,13:'Home-Public spaces-Other -Home-Other -Home',1:Home,+,0.32
+1,7:'Home-Retail and hospitality-Home',1:Home,+,0.54
+2,38:Home-Work-Home,56:Home-Public Transport-Work-Public Transport-Retail and hospitality-Public Transport-Public Transport-Public Transport-Home,+,0.47
+3,34:'Home-Private Transport-Study-Retail and hospitality-Home',32:Home-Other -Home-Public spaces-Home-Other -Retail and hospitality-Home,+,0.56
+4,1:Home,1:Home,,0.41
+5,6:'Home-Work-Study-Home-Retail and hospitality-Arts and culture-Home-Study-Home',9:Home-Public spaces-Study-Public spaces-Home-Car journey-Study-Private Transport-Home,+,0.35
+6,15:'Home-Public spaces-Study-Public spaces-Home-Retail and hospitality-Retail and hospitality-Home-Other -Study-Home',18:Home-Public spaces-Home-Private Transport-Other -Private Transport-Study-Private Transport-Work-Home-Work-Home,+,0.21
+7,25:'Home-Private Transport-Study-Private Transport-Private Transport-Study-Private Transport-Work-Private Transport-Retail and hospitality-Private Transport-Private Transport-Other -Private Transport',22:Home-Private Transport-Other -Home,+,0.22
+8,2:'Home-Private Transport-Retail and hospitality-Retail and hospitality-Private Transport-Home-Private Transport-Retail and hospitality-Private Transport-Home-Private Transport-Retail and hospitality-Private Transport',9:Home-Public spaces-Study-Public spaces-Home-Car journey-Study-Private Transport-Home,+,0.33
+1,7:'Home-Retail and hospitality-Home',27:Home-Sport and recreation-Retail and hospitality-Retail and hospitality-Retail and hospitality-Home,+,0.3
+2,38:Home-Work-Home,35:Home-Private Transport-Work-Private Transport-Study-Private Transport-Home,+,0.2
+3,43:'Home-Sport and recreation-Retail and hospitality-Retail and hospitality-Home-Home-Public spaces-Home-Study-Home-Other -Home-Retail and hospitality-Home',46:Home-Private Transport-Retail and hospitality-Retail and hospitality-Arts and culture-Retail and hospitality-Private Transport-Home,+,0.36
+4,1:Home,24:Home-Other -Retail and hospitality-Home,+,0.37
+5,42:'Home-Private Transport-Study-Private Transport-Home-Home',1:Home,+,0.27
+6,44:Home-Study-Home-Study-Home,50:Home-Other -Sport and recreation-Home-Study-Home-Sport and recreation-Home,+,0.27
+7,65:'Home-Private Transport-Public spaces-Private Transport-Home',55:Home-Private Transport-Study-Private Transport-Retail and hospitality-Private Transport-Home-Private Transport-Study-Private Transport-Other -Private Transport-Home,+,0.22
+8,64:'Home-Private Transport-Work-Private Transport-Retail and hospitality-Home',1:Home,+,0.24
+1,11:'Other -Home-Other -Home',1:Home,+,0.44
+2,51:'Home-Public spaces-Home',55:Home-Private Transport-Study-Private Transport-Retail and hospitality-Private Transport-Home-Private Transport-Study-Private Transport-Other -Private Transport-Home,+,0.43
+3,46:'Home-Private Transport-Retail and hospitality-Retail and hospitality-Arts and culture-Retail and hospitality-Private Transport-Home',1:Home,+,0.27
+4,1:Home,1:Home,,0.39
+5,27:'Home-Sport and recreation-Retail and hospitality-Retail and hospitality-Retail and hospitality-Home',29:Work-Home,+,0.24
+6,8:'Home-Private Transport-Sport and recreation-Retail and hospitality-Private Transport-Home',1:Home,+,0.4
+7,54:'Home-Retail and hospitality-Retail and hospitality-Public spaces-Retail and hospitality-Retail and hospitality-Home',1:Home,+,0.45
+8,62:'Home-Private Transport-Work-Private Transport-Retail and hospitality-Work-Private Transport-Home',1:Home,+,0.36
+1,30:'Home-Private Transport-Study-Sport and recreation-Retail and hospitality-Retail and hospitality-Private Transport-Home-Car journey-Retail and hospitality-Private Transport-Home-Car journey-Study-Private Transport-Home',14:Home-Private Transport-Work-Private Transport-Home,+,0.46
+2,40:'Home-Private Transport-Retail and hospitality-Home',43:Home-Sport and recreation-Retail and hospitality-Retail and hospitality-Home-Home-Public spaces-Home-Study-Home-Other -Home-Retail and hospitality-Home,+,0.27
+3,1:Home,7:Home-Retail and hospitality-Home,+,0.29
+4,1:Home,11:Other -Home-Other -Home,+,0.41
+5,60:'Home-Private Transport-Other -Private Transport-Other -Private Transport-Home-Other -Other -Home-Other -Other -Other -Home',61:Home-Public spaces-Home-Public spaces-Private Transport-Retail and hospitality-Private Transport-Home,+,0.37
+6,24:'Home-Other -Retail and hospitality-Home',1:Home,+,0.69
+7,28:'Other -Private Transport-Other -Private Transport-Private Transport-Home',7:Home-Retail and hospitality-Home,+,0.42
+8,59:'Home-Other -Home',58:Home-Private Transport-Study-Home-Private Transport-Study-Home-Private Transport-Study-Home-Private Transport-Study-Home,+,0.28
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances           4                4.8193 %
+Incorrectly Classified Instances        79               95.1807 %
+Kappa statistic                          0.0097
+Mean absolute error                      0.0295
+Root mean squared error                  0.1327
+Relative absolute error                 99.2339 %
+Root relative squared error            108.6599 %
+Total Number of Instances               83     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.273    0.194    0.176      0.273    0.214      0.066    0.401     0.179     Home
+                 0.000    0.024    0.000      0.000    0.000      -0.017   0.463     0.012     Home-Private Transport-Retail and hospitality-Retail and hospitality-Private Transport-Home-Private Transport-Retail and hospitality-Private Transport-Home-Private Transport-Retail and hospitality-Private Transport
+                 0.000    0.000    ?          0.000    ?          ?        0.445     0.012     Home-Car journey-Sport and recreation-Retail and hospitality-Car journey-Home
+                 0.000    0.000    ?          0.000    ?          ?        0.421     0.012     Home-Public spaces-Home-Retail and hospitality-Home
+                 0.000    0.012    0.000      0.000    0.000      -0.012   0.402     0.012     Home-Private Transport-Other -Private Transport-Retail and hospitality-Home-Work-Retail and hospitality-Home
+                 0.000    0.012    0.000      0.000    0.000      -0.012   0.433     0.012     Home-Work-Study-Home-Retail and hospitality-Arts and culture-Home-Study-Home
+                 0.000    0.037    0.000      0.000    0.000      -0.030   0.370     0.024     Home-Retail and hospitality-Home
+                 0.000    0.000    ?          0.000    ?          ?        0.409     0.012     Home-Private Transport-Sport and recreation-Retail and hospitality-Private Transport-Home
+                 0.000    0.024    0.000      0.000    0.000      -0.017   0.421     0.012     Home-Public spaces-Study-Public spaces-Home-Car journey-Study-Private Transport-Home
+                 0.000    0.000    ?          0.000    ?          ?        0.451     0.012     Home-Public spaces-Retail and hospitality-Home-Private Transport-Arts and culture-Private Transport-Home
+                 0.000    0.012    0.000      0.000    0.000      -0.012   0.409     0.012     Other -Home-Other -Home
+                 0.000    0.012    0.000      0.000    0.000      -0.012   0.384     0.012     Home-Private Transport-Private Transport-Home-Private Transport-Retail and hospitality-Private Transport-Other -Private Transport-Home-Private Transport-Other -Private Transport-Home
+                 0.000    0.000    ?          0.000    ?          ?        0.409     0.012     Home-Public spaces-Other -Home-Other -Home
+                 0.000    0.025    0.000      0.000    0.000      -0.030   0.883     0.214     Home-Private Transport-Work-Private Transport-Home
+                 0.000    0.024    0.000      0.000    0.000      -0.017   0.402     0.012     Home-Public spaces-Study-Public spaces-Home-Retail and hospitality-Retail and hospitality-Home-Other -Study-Home
+                 0.000    0.012    0.000      0.000    0.000      -0.012   0.396     0.012     Home-Retail and hospitality-Private Transport-Retail and hospitality-Retail and hospitality-Private Transport-Retail and hospitality-Study-Private Transport-Sport and recreation-Home-Home
+                 0.000    0.012    0.000      0.000    0.000      -0.012   0.354     0.012     Home-Public Transport-Work-Public Transport-Home
+                 0.000    0.012    0.000      0.000    0.000      -0.012   0.409     0.012     Home-Public spaces-Home-Private Transport-Other -Private Transport-Study-Private Transport-Work-Home-Work-Home
+                 0.000    0.000    ?          0.000    ?          ?        0.415     0.012     Home-Private Transport-Retail and hospitality-Home-Work-Private Transport-Home
+                 0.000    0.000    ?          0.000    ?          ?        0.383     0.024     Home-Private Transport-Other -Private Transport-Home
+                 0.000    0.012    0.000      0.000    0.000      -0.012   0.415     0.012     Home-Private Transport-Study-Work-Study-Home
+                 0.000    0.037    0.000      0.000    0.000      -0.021   0.421     0.012     Home-Private Transport-Other -Home
+                 0.000    0.000    ?          0.000    ?          ?        0.384     0.012     Home-Public Transport-Study-Public Transport-Home
+                 0.000    0.025    0.000      0.000    0.000      -0.025   0.333     0.024     Home-Other -Retail and hospitality-Home
+                 0.000    0.012    0.000      0.000    0.000      -0.012   0.396     0.012     Home-Private Transport-Study-Private Transport-Private Transport-Study-Private Transport-Work-Private Transport-Retail and hospitality-Private Transport-Private Transport-Other -Private Transport
+                 0.000    0.000    ?          0.000    ?          ?        0.415     0.012     Home-Private Transport-Study-Private Transport-Retail and hospitality-Home-Other -Study-Home-Private Transport-Home
+                 0.000    0.024    0.000      0.000    0.000      -0.017   0.427     0.012     Home-Sport and recreation-Retail and hospitality-Retail and hospitality-Retail and hospitality-Home
+                 0.000    0.000    ?          0.000    ?          ?        0.402     0.012     Other -Private Transport-Other -Private Transport-Private Transport-Home
+                 0.000    0.012    0.000      0.000    0.000      -0.012   0.409     0.012     Work-Home
+                 0.000    0.012    0.000      0.000    0.000      -0.012   0.378     0.012     Home-Private Transport-Study-Sport and recreation-Retail and hospitality-Retail and hospitality-Private Transport-Home-Car journey-Retail and hospitality-Private Transport-Home-Car journey-Study-Private Transport-Home
+                 0.000    0.012    0.000      0.000    0.000      -0.012   0.415     0.012     Home-Retail and hospitality-Retail and hospitality-Retail and hospitality-Private Transport-Other -Private Transport-Home
+                 0.000    0.024    0.000      0.000    0.000      -0.017   0.415     0.012     Home-Other -Home-Public spaces-Home-Other -Retail and hospitality-Home
+                 0.000    0.012    0.000      0.000    0.000      -0.012   0.390     0.012     Home-Private Transport-Work-Private Transport-Home-Private Transport-Other -Private Transport-Home
+                 0.000    0.012    0.000      0.000    0.000      -0.012   0.390     0.012     Home-Private Transport-Study-Retail and hospitality-Home
+                 0.000    0.037    0.000      0.000    0.000      -0.021   0.409     0.012     Home-Private Transport-Work-Private Transport-Study-Private Transport-Home
+                 0.000    0.000    ?          0.000    ?          ?        0.402     0.012     Home-Public Transport-Public Transport-Retail and hospitality-Work-Retail and hospitality-Work-Public Transport-Public Transport-Home
+                 0.000    0.000    ?          0.000    ?          ?        0.421     0.012     Home-Study-Home-Retail and hospitality-Home
+                 0.333    0.025    0.333      0.333    0.333      0.308    0.694     0.158     Home-Work-Home
+                 0.000    0.000    ?          0.000    ?          ?        0.421     0.012     Home-Private Transport-Other -Private Transport-Home-Private Transport-Retail and hospitality-Private Transport-Home-Private Transport-Other -Private Transport-Home
+                 0.000    0.000    ?          0.000    ?          ?        0.384     0.012     Home-Private Transport-Retail and hospitality-Home
+                 0.000    0.012    0.000      0.000    0.000      -0.012   0.384     0.012     Home-Private Transport-Work-Home
+                 0.000    0.000    ?          0.000    ?          ?        0.457     0.012     Home-Private Transport-Study-Private Transport-Home-Home
+                 0.000    0.012    0.000      0.000    0.000      -0.012   0.409     0.012     Home-Sport and recreation-Retail and hospitality-Retail and hospitality-Home-Home-Public spaces-Home-Study-Home-Other -Home-Retail and hospitality-Home
+                 0.000    0.000    ?          0.000    ?          ?        0.366     0.012     Home-Study-Home-Study-Home
+                 0.000    0.037    0.000      0.000    0.000      -0.021   0.415     0.012     Home-Private Transport-Retail and hospitality-Private Transport-Retail and hospitality-Private Transport-Home
+                 0.000    0.012    0.000      0.000    0.000      -0.012   0.402     0.012     Home-Private Transport-Retail and hospitality-Retail and hospitality-Arts and culture-Retail and hospitality-Private Transport-Home
+                 0.000    0.024    0.000      0.000    0.000      -0.017   0.409     0.012     Home-Other -Car journey-Home-Arts and culture-Home
+                 0.000    0.012    0.000      0.000    0.000      -0.012   0.409     0.012     Home-Private Transport-Sport and recreation-Private Transport-Home
+                 0.000    0.000    ?          0.000    ?          ?        0.439     0.012     Home-Public spaces-Private Transport-Retail and hospitality-Private Transport-Retail and hospitality-Home
+                 0.000    0.012    0.000      0.000    0.000      -0.012   0.409     0.012     Home-Other -Sport and recreation-Home-Study-Home-Sport and recreation-Home
+                 0.000    0.024    0.000      0.000    0.000      -0.017   0.409     0.012     Home-Public spaces-Home
+                 0.000    0.000    ?          0.000    ?          ?        0.366     0.012     Home-Private Transport-Study-Car journey-Home-Retail and hospitality-Home-Car journey-Retail and hospitality-Car journey-Home
+                 0.000    0.000    ?          0.000    ?          ?        0.415     0.012     Home-Car journey-Study-Car journey-Study-Private Transport-Home-Private Transport-Public spaces-Car journey-Public spaces-Public spaces-Work-Public spaces-Car journey-Retail and hospitality-Car journey-Home
+                 0.000    0.024    0.000      0.000    0.000      -0.017   0.421     0.012     Home-Retail and hospitality-Retail and hospitality-Public spaces-Retail and hospitality-Retail and hospitality-Home
+                 0.000    0.024    0.000      0.000    0.000      -0.017   0.396     0.012     Home-Private Transport-Study-Private Transport-Retail and hospitality-Private Transport-Home-Private Transport-Study-Private Transport-Other -Private Transport-Home
+                 0.000    0.012    0.000      0.000    0.000      -0.012   0.402     0.012     Home-Public Transport-Work-Public Transport-Retail and hospitality-Public Transport-Public Transport-Public Transport-Home
+                 0.000    0.012    0.000      0.000    0.000      -0.012   0.409     0.012     Home-Private Transport-Work-Private Transport-Work-Private Transport-Home
+                 0.000    0.024    0.000      0.000    0.000      -0.017   0.415     0.012     Home-Private Transport-Study-Home-Private Transport-Study-Home-Private Transport-Study-Home-Private Transport-Study-Home
+                 0.000    0.000    ?          0.000    ?          ?        0.402     0.012     Home-Other -Home
+                 0.000    0.012    0.000      0.000    0.000      -0.012   0.433     0.012     Home-Private Transport-Other -Private Transport-Other -Private Transport-Home-Other -Other -Home-Other -Other -Other -Home
+                 0.000    0.012    0.000      0.000    0.000      -0.012   0.390     0.012     Home-Public spaces-Home-Public spaces-Private Transport-Retail and hospitality-Private Transport-Home
+                 0.000    0.012    0.000      0.000    0.000      -0.012   0.415     0.012     Home-Private Transport-Work-Private Transport-Retail and hospitality-Work-Private Transport-Home
+                 0.000    0.024    0.000      0.000    0.000      -0.017   0.433     0.012     Home-Public spaces-Study-Public spaces-Retail and hospitality-Public spaces-Home-Private Transport-Arts and culture-Private Transport-Retail and hospitality-Retail and hospitality-Retail and hospitality-Private Transport-Home-Public spaces-Study-Public spaces-Home
+                 0.000    0.000    ?          0.000    ?          ?        0.457     0.012     Home-Private Transport-Work-Private Transport-Retail and hospitality-Home
+                 0.000    0.012    0.000      0.000    0.000      -0.012   0.427     0.012     Home-Private Transport-Public spaces-Private Transport-Home
+                 0.000    0.000    ?          0.000    ?          ?        0.421     0.012     Home-Public spaces-Other -Retail and hospitality-Home-Public spaces-Retail and hospitality-Sport and recreation-Home
+Weighted Avg.    0.048    0.037    ?          0.048    ?          ?        0.433     0.048     
+
+=== Confusion Matrix ===
+
+  a  b  c  d  e  f  g  h  i  j  k  l  m  n  o  p  q  r  s  t  u  v  w  x  y  z aa ab ac ad ae af ag ah ai aj ak al am an ao ap aq ar as at au av aw ax ay az ba bb bc bd be bf bg bh bi bj bk bl bm bn   <-- classified as
+  3  0  0  0  1  0  1  0  0  0  1  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  1  0  0  0  0  0  0  1  0  0  0  0  0  0  0  1  0  0  0  0 |  a = Home
+  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 |  b = Home-Private Transport-Retail and hospitality-Retail and hospitality-Private Transport-Home-Private Transport-Retail and hospitality-Private Transport-Home-Private Transport-Retail and hospitality-Private Transport
+  0  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 |  c = Home-Car journey-Sport and recreation-Retail and hospitality-Car journey-Home
+  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 |  d = Home-Public spaces-Home-Retail and hospitality-Home
+  0  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 |  e = Home-Private Transport-Other -Private Transport-Retail and hospitality-Home-Work-Retail and hospitality-Home
+  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 |  f = Home-Work-Study-Home-Retail and hospitality-Arts and culture-Home-Study-Home
+  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 |  g = Home-Retail and hospitality-Home
+  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 |  h = Home-Private Transport-Sport and recreation-Retail and hospitality-Private Transport-Home
+  0  0  0  0  0  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 |  i = Home-Public spaces-Study-Public spaces-Home-Car journey-Study-Private Transport-Home
+  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 |  j = Home-Public spaces-Retail and hospitality-Home-Private Transport-Arts and culture-Private Transport-Home
+  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 |  k = Other -Home-Other -Home
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 |  l = Home-Private Transport-Private Transport-Home-Private Transport-Retail and hospitality-Private Transport-Other -Private Transport-Home-Private Transport-Other -Private Transport-Home
+  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 |  m = Home-Public spaces-Other -Home-Other -Home
+  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 |  n = Home-Private Transport-Work-Private Transport-Home
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 |  o = Home-Public spaces-Study-Public spaces-Home-Retail and hospitality-Retail and hospitality-Home-Other -Study-Home
+  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 |  p = Home-Retail and hospitality-Private Transport-Retail and hospitality-Retail and hospitality-Private Transport-Retail and hospitality-Study-Private Transport-Sport and recreation-Home-Home
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 |  q = Home-Public Transport-Work-Public Transport-Home
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 |  r = Home-Public spaces-Home-Private Transport-Other -Private Transport-Study-Private Transport-Work-Home-Work-Home
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 |  s = Home-Private Transport-Retail and hospitality-Home-Work-Private Transport-Home
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0 |  t = Home-Private Transport-Other -Private Transport-Home
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 |  u = Home-Private Transport-Study-Work-Study-Home
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 |  v = Home-Private Transport-Other -Home
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 |  w = Home-Public Transport-Study-Public Transport-Home
+  1  0  0  0  0  0  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 |  x = Home-Other -Retail and hospitality-Home
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 |  y = Home-Private Transport-Study-Private Transport-Private Transport-Study-Private Transport-Work-Private Transport-Retail and hospitality-Private Transport-Private Transport-Other -Private Transport
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 |  z = Home-Private Transport-Study-Private Transport-Retail and hospitality-Home-Other -Study-Home-Private Transport-Home
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 | aa = Home-Sport and recreation-Retail and hospitality-Retail and hospitality-Retail and hospitality-Home
+  0  0  0  0  0  0  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 | ab = Other -Private Transport-Other -Private Transport-Private Transport-Home
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 | ac = Work-Home
+  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 | ad = Home-Private Transport-Study-Sport and recreation-Retail and hospitality-Retail and hospitality-Private Transport-Home-Car journey-Retail and hospitality-Private Transport-Home-Car journey-Study-Private Transport-Home
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 | ae = Home-Retail and hospitality-Retail and hospitality-Retail and hospitality-Private Transport-Other -Private Transport-Home
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 | af = Home-Other -Home-Public spaces-Home-Other -Retail and hospitality-Home
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 | ag = Home-Private Transport-Work-Private Transport-Home-Private Transport-Other -Private Transport-Home
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 | ah = Home-Private Transport-Study-Retail and hospitality-Home
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 | ai = Home-Private Transport-Work-Private Transport-Study-Private Transport-Home
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 | aj = Home-Public Transport-Public Transport-Retail and hospitality-Work-Retail and hospitality-Work-Public Transport-Public Transport-Home
+  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 | ak = Home-Study-Home-Retail and hospitality-Home
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0  0  0  0  0 | al = Home-Work-Home
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 | am = Home-Private Transport-Other -Private Transport-Home-Private Transport-Retail and hospitality-Private Transport-Home-Private Transport-Other -Private Transport-Home
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 | an = Home-Private Transport-Retail and hospitality-Home
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 | ao = Home-Private Transport-Work-Home
+  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 | ap = Home-Private Transport-Study-Private Transport-Home-Home
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 | aq = Home-Sport and recreation-Retail and hospitality-Retail and hospitality-Home-Home-Public spaces-Home-Study-Home-Other -Home-Retail and hospitality-Home
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 | ar = Home-Study-Home-Study-Home
+  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 | as = Home-Private Transport-Retail and hospitality-Private Transport-Retail and hospitality-Private Transport-Home
+  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 | at = Home-Private Transport-Retail and hospitality-Retail and hospitality-Arts and culture-Retail and hospitality-Private Transport-Home
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 | au = Home-Other -Car journey-Home-Arts and culture-Home
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 | av = Home-Private Transport-Sport and recreation-Private Transport-Home
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0  0  0  0  0  0  0 | aw = Home-Public spaces-Private Transport-Retail and hospitality-Private Transport-Retail and hospitality-Home
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 | ax = Home-Other -Sport and recreation-Home-Study-Home-Sport and recreation-Home
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0  0  0  0  0  0 | ay = Home-Public spaces-Home
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 | az = Home-Private Transport-Study-Car journey-Home-Retail and hospitality-Home-Car journey-Retail and hospitality-Car journey-Home
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 | ba = Home-Car journey-Study-Car journey-Study-Private Transport-Home-Private Transport-Public spaces-Car journey-Public spaces-Public spaces-Work-Public spaces-Car journey-Retail and hospitality-Car journey-Home
+  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 | bb = Home-Retail and hospitality-Retail and hospitality-Public spaces-Retail and hospitality-Retail and hospitality-Home
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 | bc = Home-Private Transport-Study-Private Transport-Retail and hospitality-Private Transport-Home-Private Transport-Study-Private Transport-Other -Private Transport-Home
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 | bd = Home-Public Transport-Work-Public Transport-Retail and hospitality-Public Transport-Public Transport-Public Transport-Home
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0  0  0 | be = Home-Private Transport-Work-Private Transport-Work-Private Transport-Home
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0  0  0  0 | bf = Home-Private Transport-Study-Home-Private Transport-Study-Home-Private Transport-Study-Home-Private Transport-Study-Home
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0  0  0 | bg = Home-Other -Home
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  0 | bh = Home-Private Transport-Other -Private Transport-Other -Private Transport-Home-Other -Other -Home-Other -Other -Other -Home
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0 | bi = Home-Public spaces-Home-Public spaces-Private Transport-Retail and hospitality-Private Transport-Home
+  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 | bj = Home-Private Transport-Work-Private Transport-Retail and hospitality-Work-Private Transport-Home
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0 | bk = Home-Public spaces-Study-Public spaces-Retail and hospitality-Public spaces-Home-Private Transport-Arts and culture-Private Transport-Retail and hospitality-Retail and hospitality-Retail and hospitality-Private Transport-Home-Public spaces-Study-Public spaces-Home
+  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 | bl = Home-Private Transport-Work-Private Transport-Retail and hospitality-Home
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0  0  0  0  0  0 | bm = Home-Private Transport-Public spaces-Private Transport-Home
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0 | bn = Home-Public spaces-Other -Retail and hospitality-Home-Public spaces-Retail and hospitality-Sport and recreation-Home
+
