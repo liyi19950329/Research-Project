@@ -1,4 +1,5 @@
 from folium import plugins
+import sklearn
 import folium
 import os
 m = folium.Map([39.1289, 117.3539], zoom_start=10)  #中心区域的确定

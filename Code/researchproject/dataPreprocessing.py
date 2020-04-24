@@ -1,27 +1,74 @@
-import xlrd
-import xlwt
-import re
+from datetime import time
+import datetime
 import pandas as pd
 from pandas import DataFrame
-from xlutils.copy import copy
-
+import pdb
+from itertools import groupby
+import re
+import numpy as np
+import xlrd
+import xlwt
+from math import isnan
 
 
 filename = '~/Desktop/day_in_the_life_drop_suffix.xls'
+filename_entire = '~/Desktop/day_in_the_life.xlsx'
+duration_threshold = 60
 
+def abbreviation(df):
+    # df = pd.read_excel(filepath, index=None)
+    # pdb.set_trace()
+    for index, row in df.iterrows():
+        drop = re.sub(u"\\(.*?\\)","",row['Location_Type'])
+        strip = drop.strip()
+        abbre = "".join([i[0].upper() for i in strip.split(" ")])
+        df.loc[index, 'Location_Type'] = abbre
+    # DataFrame(df).to_excel(filepath, sheet_name='day_in_the_life', index=False, header=True)
+    return df
 
-def merge_locationType():
-    df = pd.read_excel(filename, index=None)
+def move(df):
+    # df = pd.read_excel(filepath, index=None)
+    for index, row in df.iterrows():
+        if row['Location_Type'] in ["PT","CJ"]:
+            df.loc[index, 'Location_Type'] = "M"
+    # DataFrame(df).to_excel(filepath, sheet_name='day_in_the_life', index=False, header=True)
+    return df
 
-    df = df.groupby(['Subject', 'Age', 'Gender'])['Location Type'].apply(ab)
+def merge_locationType(df):
+    # df = pd.read_excel(filepath, index=None)
+    # pdb.set_trace()
+    # for i in range(0, len(df)):
+    #     if (df.iloc[i+1]['Subject'] == df.iloc[i]['Subject']) & (df.iloc[i]['Location_Type'] == df.iloc[i+1]['Location_Type']):
+    #         df.loc[i, 'Duration'] = df.iloc[i+1]['Duration'] + df.iloc[i]['Duration']
+    #         row = df.iloc[i + 1]
+    #         df.drop(row, axis=0)
+    row_del = []
+    for index, row in df.iterrows():
+        if (index > 0) & (df.iloc[index-1]['Subject'] == df.iloc[index]['Subject']) & (df.iloc[index]['Location_Type'] == df.iloc[index-1]['Location_Type']):
+            df.loc[index, 'Duration'] = df.iloc[index-1]['Duration'] + df.iloc[index]['Duration']
+            row_del.append(index-1)
+    # pdb.set_trace()
+    df = df.drop(row_del, axis=0)
+    row_del_thres = []
+    for index, row in df.iterrows():
+        if row['Duration'] < duration_threshold:
+            row_del_thres.append(index)
+    df = df.drop(row_del_thres, axis=0)
+    df = df.groupby(['Subject', 'Age', 'Gender'])['Location_Type'].apply(ab)
     df = df.reset_index()
-    DataFrame(df).to_excel(filename, sheet_name='day_in_the_life', index=False, header=True)
+    # DataFrame(df).to_excel(filepath, sheet_name='day_in_the_life', index=False, header=True)
+    return df
+
 
 def ab(df):
-    return '-'.join(df.values)
 
-def recalculate_age():
-    df = pd.read_excel(filename, index=None)
+    locations = df.values
+    locations_dupe = [x[0] for x in groupby(locations)]
+
+    return '-'.join(locations_dupe)
+
+def recalculate_age(df):
+    # df = pd.read_excel(filename, index=None)
     for index, row in df.iterrows():
         if (row['Age'] >= 20) & (row['Age'] < 30):
             df.loc[index,'Age'] = "20-30"
@@ -41,6 +88,31 @@ def recalculate_age():
             df.loc[index,'Age'] = "80-100"
     print(df)
     DataFrame(df).to_excel(filename, sheet_name='day_in_the_life', index=False, header=True)
+
+def difftime(df):
+    # df = pd.read_excel(filename_entire, index=None)
+    for index, row in df.iterrows():
+        if pd.isnull(row['Time of Departure']) | pd.isnull(row['Time of Arrival']):
+            df.loc[index,'Duration'] = 'NULL'
+        elif pd.isnull(re.match("[0000]+",str(row['Time of Departure']))) & pd.isnull(re.match("[0000]+",str(row['Time of Arrival']))):
+            df.loc[index, 'Duration'] = ((row['Time of Departure']-row['Time of Arrival']).seconds)/60
+            # print(df.loc[index, 'Duration'])
+        else:
+            df.loc[index, 'Duration'] = 'NULL'
+    DataFrame(df).to_excel(filename_entire, sheet_name='day_in_the_life', index=False, header=True)
+
+def getTimeDiff(timeStra, timeStrb):
+    if timeStra <= timeStrb:
+        return 0
+    ta = time.strftime(timeStra, "%Y/%m/%d %H:%M:%S %p")
+    tb = time.strftime(timeStrb, "%Y/%m/%d %H:%M:%S %p")
+    y, m, d, H, M, S = ta[0:6]
+    dataTimea = datetime.datetime(y, m, d, H, M, S)
+    y, m, d, H, M, S = tb[0:6]
+    dataTimeb = datetime.datetime(y, m, d, H, M, S)
+    secondsDiff = (dataTimea - dataTimeb).seconds
+    minutesDiff = round(secondsDiff / 60, 1)
+    return minutesDiff
 
 # def replace():
 #     file = open(filename1, 'r')
@@ -167,5 +239,48 @@ if __name__ == '__main__':
     # files = os.listdir(cwd)  # Get all the files in that directory
     # print("Files in %r: %s" % (cwd, files))
     # replace()
-    recalculate_age()
-    merge_locationType()
+    # recalculate_age()
+    # difftime()
+
+    # read csv as dataframe
+    df = pd.read_excel(filename_entire, index=None)
+
+    # strip out content in parentheses and get first character to represent the word
+    df_abb = abbreviation(df)
+
+    # make all on the way location type as M
+    df_move = move(df_abb)
+
+    # merge all the location type for one subject
+    df_merge = merge_locationType(df_move)
+
+    # df_final = df_merge.groupby(['Location_Type'])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

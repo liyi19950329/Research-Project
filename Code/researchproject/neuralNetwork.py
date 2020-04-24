@@ -61,8 +61,9 @@ import numpy as np
 import pandas as pd
 import xlrd
 from sklearn import preprocessing
+import pdb
 
-filename = '~/Desktop/day_in_the_life_after_processing_numberLabe.xls'
+filename = '~/Desktop/RP/day_in_the_life.xls'
 
 def sigmoid(x):
   # Sigmoid activation function: f(x) = 1 / (1 + e^(-x))
@@ -108,6 +109,7 @@ class OurNeuralNetwork:
     h1 = sigmoid(self.w1 * x[0] + self.w2 * x[1] + self.b1)
     h2 = sigmoid(self.w3 * x[0] + self.w4 * x[1] + self.b2)
     o1 = sigmoid(self.w5 * h1 + self.w6 * h2 + self.b3)
+    print(h1, h2)
     return o1
 
   def train(self, data, all_y_trues):
@@ -187,6 +189,7 @@ def excel_to_matrix(path):
 
     datamatrix_label = np.zeros((row, 1))#生成一个nrows行ncols列，且元素均为0的初始矩阵
     for x in range(col):
+        # pdb.set_trace()
         cols = np.matrix(table.col_values(x))  # 把list转换为矩阵进行矩阵操作
         if x == 1:
             datamatrix_feature_age[:, 0] = cols # 按列把数据存进矩阵中
@@ -199,7 +202,7 @@ def excel_to_matrix(path):
     datamatrix_feature_age = min_max_scaler.fit_transform(datamatrix_feature_age)
     datamatrix_label = min_max_scaler.fit_transform(datamatrix_label)
     datamatrix_feature = np.hstack((datamatrix_feature_age, datamatrix_feature_gender))
-    print(datamatrix_feature,datamatrix_label)
+    print(datamatrix_label)
     return datamatrix_feature,datamatrix_label
 
 datamatrix_feature,datamatrix_label = excel_to_matrix(filename)
@@ -224,9 +227,11 @@ print(datamatrix_feature,datamatrix_label)
 network = OurNeuralNetwork()
 network.train(datamatrix_feature, datamatrix_label)
 
-emily = np.array([65, 1])
-emily2 = np.array([42, 1])
-emily3 = np.array([200, 2])
+
+
+emily = np.array([65,2])
+emily2 = np.array([0.9, 1])
+emily3 = np.array([0.23, 2])
 
 
 print("Emily: %.3f" % network.feedforward(emily))
