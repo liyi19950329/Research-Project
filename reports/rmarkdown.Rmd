@@ -1,0 +1,156 @@
+---
+output:
+  word_document: default
+  html_document: default
+---
+```{r}
+encounter <- read.csv("/Users/liyi/Desktop/RP/day_in_the_life.csv")
+```
+# How many unique subjects in this data set
+```{r}
+index <- duplicated(encounter[,1])
+encounter_subset <- encounter[!index,]
+(nrow(encounter_subset))
+```
+#How many males / females are in the data set?
+# # The number of male in this dataset
+```{r}
+(nrow(encounter_subset[encounter_subset$Gender == 1,]))
+```
+# # The number of female in this dataset
+```{r}
+(nrow(encounter_subset[encounter_subset$Gender == 2,]))
+```
+# Age distribution for all of the subjects
+# # mean and sd of age
+```{r}
+meanage = mean(encounter_subset$Age,rm.na = TRUE)
+sdage = sd(encounter_subset$Age)
+```
+## plots of raw data of age
+```{r}
+stripchart(encounter_subset$Age, xlab = "age")
+boxplot(encounter_subset$Age,horizontal = TRUE,xlab = "age")
+```
+## histgram
+```{r}
+hist(encounter_subset$Age,xlab = "age",ylab = "freq",main = "age distribution")
+hist(encounter_subset$Age,xlab = "age",ylab = "freq",main = "age distribution",freq = FALSE)
+curve(dnorm(x, 
+            mean=meanage, 
+            sd=sdage), 
+      add=TRUE, 
+      col="darkblue", 
+      lwd=2)
+```
+## Plot distribution
+```{r}
+age_distribution <- dnorm(encounter_subset$Age, mean(encounter_subset$Age), sd = sd(encounter_subset$Age))
+plot(encounter_subset$Age,age_distribution, xlab = "age")
+```
+## The summary of age distribution
+```{r}
+summary(encounter_subset$Age)
+```
+# Age distribution bases on gender
+```{r}
+par(mfrow=c(1,1))
+boxplot(Age~Gender,data = encounter_subset,xlab = "gender",ylab = "age",main = "age~gender")
+plot(Age~Gender,data = encounter_subset,xlab = "gender",ylab = "age")
+hist(encounter_subset$Age[which(encounter_subset$Gender==1)],xlab = "age", main = "Age distribution of male")
+hist(encounter_subset$Age[which(encounter_subset$Gender==1)],freq = FALSE, xlab = "age", main = "Age distribution of male")
+curve(dnorm(x,
+            mean = mean(encounter_subset$Age[which(encounter_subset$Gender==1)]),
+            sd = sd(encounter_subset$Age[which(encounter_subset$Gender==1)])),
+      add = TRUE)
+
+hist(encounter_subset$Age[which(encounter_subset$Gender==2)],xlab = "age", main = "Age distribution of female")
+hist(encounter_subset$Age[which(encounter_subset$Gender==2)],freq = FALSE, xlab = "age", main = "Age distribution of female")
+curve(dnorm(x,
+            mean = mean(encounter_subset$Age[which(encounter_subset$Gender==2)]),
+            sd = sd(encounter_subset$Age[which(encounter_subset$Gender==2)])),
+      add = TRUE)
+```
+## The summary of age based on gender
+```{r}
+summary(encounter_subset$Age[which(encounter_subset$Gender==1)])
+summary(encounter_subset$Age[which(encounter_subset$Gender==2)])
+```
+# The distribution of the number of locations visited by each study participant
+```{r}
+num_of_locations <- data.frame(num = numeric(0))
+for(subject in encounter_subset$Subject){
+  #print(subject)
+  num_of_locations <- rbind(num_of_locations, nrow(encounter[which(encounter$Subject == subject), ]))
+  #nrow(encounter[which(encounter$Subject == subject), ])
+}
+nrow(num_of_locations)
+hist(num_of_locations$X1L,xlab = "number of locations",main = "distribution of number of locations")
+hist(num_of_locations$X1L,freq = FALSE,xlab = "number of locations",main = "distribution of number of locations")
+curve(dnorm(x,
+            mean = mean(num_of_locations$X1L),
+            sd = sd(num_of_locations$X1L)),
+      add = TRUE)
+
+boxplot(num_of_locations$X1L,horizontal = TRUE)
+stripchart(num_of_locations$X1L)
+num_of_locations_distribution <- dnorm(num_of_locations$X1L, mean=mean(num_of_locations$X1L), sd = sd(num_of_locations$X1L))
+plot(num_of_locations$X1L,num_of_locations_distribution,xlab = "number of locations",main = "distribution of number of locations")
+```
+#What is the distribution of number of different *types* of locations visited by each study participant?
+```{r}
+index <- duplicated(encounter[,c(1,6)])
+encounter_subset_locationType <- encounter[!index,]
+encounter_subset_locationType[c(1,2,3,4,5),]
+num_of_locationTypes <- data.frame(num = numeric(0))
+for(subject in encounter_subset$Subject){
+  num_of_locationTypes <- rbind(num_of_locationTypes, nrow(encounter_subset_locationType[which(encounter_subset_locationType$Subject == subject), ]))
+}
+hist(num_of_locationTypes$X1L,xlab = "number of location types",main = "distribution of number of location types")
+hist(num_of_locationTypes$X1L,freq = FALSE,xlab = "number of location types",main = "distribution of number of location types")
+curve(dnorm(x,
+            mean = mean(num_of_locationTypes$X1L),
+            sd = sd(num_of_locationTypes$X1L)),
+      add = TRUE)
+
+boxplot(num_of_locationTypes$X1L,horizontal = TRUE)
+stripchart(num_of_locationTypes$X1L)
+num_of_locationTypes_distribution <- dnorm(num_of_locationTypes$X1L, mean=mean(num_of_locationTypes$X1L), sd = sd(num_of_locationTypes$X1L))
+plot(num_of_locationTypes$X1L,num_of_locationTypes_distribution)
+```
+# What is the distribution of times spent at locations?
+```{r}
+encounter_duration <- read.csv("/Users/liyi/Desktop/RP/day_in_the_life.csv")
+encounter_with_duration_subset <- encounter_duration[which(encounter_duration$Duration!="NULL"), ]
+hist(as.numeric(as.character(encounter_with_duration_subset$Duration)),xlab = "duration",main = "distribution of duration")
+hist(as.numeric(as.character(encounter_with_duration_subset$Duration)),freq = FALSE,xlab = "duration",main = "distribution of duration")
+meanvalue <- mean(as.numeric(as.character(encounter_with_duration_subset$Duration)),na.rm=TRUE)
+sdvalue <- sd(as.numeric(as.character(encounter_with_duration_subset$Duration)),na.rm=TRUE)
+curve(dnorm(x,
+            mean = meanvalue,
+            sd = sdvalue),
+      add = TRUE)
+
+# encounter_with_duration_subset_single <- na.omit(encounter_with_duration_subset$Duration)
+duration_location_distribution <- dnorm(na.omit(as.numeric(as.character(encounter_with_duration_subset$Duration))), mean = meanvalue, sd = sdvalue)
+plot(na.omit(as.numeric(as.character(encounter_with_duration_subset$Duration))),duration_location_distribution,xlab = "duration",ylab = "distribution",main = "distribution of duration")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
