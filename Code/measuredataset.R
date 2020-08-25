@@ -246,45 +246,45 @@ age_range_rep <- encounter_subset$Age
 i = 1
 while(i<=length(age_range_rep)){
   age = age_range_rep[i]
-  if(age>=0&&age<10)
+  if(age>=18&&age<29)
   {
-    age_range_rep[i] = "0-10"
+    age_range_rep[i] = "18-29"
   }
-  else if(age>=10&&age<20){
-    age_range_rep[i] = "10-20"
+  else if(age>=30&&age<49){
+    age_range_rep[i] = "30-49"
   }
-  else if(age>=20&&age<30)
+  else if(age>=50&&age<59)
   {
-    age_range_rep[i] = "20-30"
+    age_range_rep[i] = "50-59"
   }
-  else if(age>=30&&age<40)
+  else if(age>=60&&age<69)
   {
-    age_range_rep[i] = "30-40"
+    age_range_rep[i] = "60-69"
   }
-  else if(age>=40&&age<50)
+  else if(age>=70)
   {
-    age_range_rep[i] = "40-50"
+    age_range_rep[i] = "70+"
   }
-  else if(age>=50&&age<60)
-  {
-    age_range_rep[i] = "50-60"
-  }
-  else if(age>=60&&age<70)
-  {
-    age_range_rep[i] = "60-70"
-  }
-  else if(age>=70&&age<80)
-  {
-    age_range_rep[i] = "70-80"
-  }
-  else if(age>=80&&age<90)
-  {
-    age_range_rep[i] = "80-90"
-  }
-  else if(age>=90&&age<100)
-  {
-    age_range_rep[i] = "90-100"
-  }
+  # else if(age>=50&&age<60)
+  # {
+  #   age_range_rep[i] = "50-60"
+  # }
+  # else if(age>=60&&age<70)
+  # {
+  #   age_range_rep[i] = "60-70"
+  # }
+  # else if(age>=70&&age<80)
+  # {
+  #   age_range_rep[i] = "70-80"
+  # }
+  # else if(age>=80&&age<90)
+  # {
+  #   age_range_rep[i] = "80-90"
+  # }
+  # else if(age>=90&&age<100)
+  # {
+  #   age_range_rep[i] = "90-100"
+  # }
   else
   {
     age_range_rep[i] = "no age"
@@ -306,13 +306,13 @@ num_of_locations$location_range <- num_of_locations$X1L
 num_of_locations$location_range[num_of_locations$location_range > 12] <- 13
 num_of_locations$location_range <- factor(num_of_locations$location_range,
                                           levels = c(1,2,3,4,5,6,7,8,9,10,11,12,13),
-                                          labels = c("1","2","3","4","5","6","7","8","9","10","11","12","more than 12"))
+                                          labels = c("1","2","3","4","5","6","7","8","9","10","11","12","12+"))
 num_of_locations$age_range <- age_range_rep
 agelocation <- table(num_of_locations$location_range,num_of_locations$age_range)
 lacationage <- table(num_of_locations$age_range,num_of_locations$location_range)
 par(mar=c(5.1, 4.1, 4.1, 3.1), xpd=TRUE)
 barplot(agelocation, main="Age range and locations",
-        xlab="Age range", ylab = "Frequency",
+        xlab="Age range", ylab = "How many locations has been to(Frequency)",
         col=c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink","darkred","cornsilk"),
         beside=TRUE)
 text.legend=row.names(agelocation)
@@ -335,6 +335,7 @@ text.legend=row.names(lacationage)
 col2 <- c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray")
 legend("topright",pch=c(15),legend=text.legend,col=col2,bty="n",ncol = 1,inset=c(0.1,0))
 
+
 barplot(lacationage, main="Age range and locations",
         xlab="Number of locations", ylab = "Frequency",
         col=c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray")
@@ -344,7 +345,7 @@ col2 <- c("darkblue","red","orange","yellow","green","blue","purple","darkslateg
 legend("topright",pch=c(15),legend=text.legend,col=col2,bty="n",ncol = 1,inset=c(0.1,0))
 
 agelocation_prop1 <- prop.table(agelocation,2)
-barplot(agelocation_prop1, main="Probabilities age range and locations",
+barplot(agelocation_prop1, main="Proportion age range and locations",
         xlab="Age range", ylab = "Probabilities",
         col=c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink","darkred","cornsilk"))
 text.legend=row.names(agelocation_prop1)
