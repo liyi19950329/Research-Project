@@ -240,24 +240,25 @@ index <- duplicated(encounter[,1])
 encounter_subset <- encounter[!index,]
 (nrow(encounter_subset))
 encounter_subset
+encounter_subset <- encounter_subset[(encounter_subset.c1!=12)]
 
 # Relationship between age and num of locations
 age_range_rep <- encounter_subset$Age
 i = 1
 while(i<=length(age_range_rep)){
   age = age_range_rep[i]
-  if(age>=18&&age<29)
+  if(age>=18&&age<=29)
   {
     age_range_rep[i] = "18-29"
   }
-  else if(age>=30&&age<49){
+  else if(age>=30&&age<=49){
     age_range_rep[i] = "30-49"
   }
-  else if(age>=50&&age<59)
+  else if(age>=50&&age<=59)
   {
     age_range_rep[i] = "50-59"
   }
-  else if(age>=60&&age<69)
+  else if(age>=60&&age<=69)
   {
     age_range_rep[i] = "60-69"
   }
@@ -285,17 +286,25 @@ while(i<=length(age_range_rep)){
   # {
   #   age_range_rep[i] = "90-100"
   # }
-  else
-  {
-    age_range_rep[i] = "no age"
-  }
+  # else
+  # {
+  #   age_range_rep[i] = "no age"
+  # }
   i = i+1
 }
+
+age_distri<-as.data.frame(table(age_range_rep))
+age_distri$Freq / sum(age_distri$Freq)
+age_distri
+#unique location
+index <- duplicated(encounter[,c(1,9,10)])
+encounter_subset_locations_unique <- encounter[!index,]
+#unique location
 
 num_of_locations <- data.frame(num = numeric(0))
 for(subject in encounter_subset$Subject){
   #print(subject)
-  num_of_locations <- rbind(num_of_locations, nrow(encounter[which(encounter$Subject == subject), ]))
+  num_of_locations <- rbind(num_of_locations, nrow(encounter_subset_locations_unique[which(encounter_subset_locations_unique$Subject == subject), ]))
   #nrow(encounter[which(encounter$Subject == subject), ])
 }
 num_of_locations$age <- encounter_subset$Age
@@ -307,16 +316,25 @@ num_of_locations$location_range[num_of_locations$location_range > 12] <- 13
 num_of_locations$location_range <- factor(num_of_locations$location_range,
                                           levels = c(1,2,3,4,5,6,7,8,9,10,11,12,13),
                                           labels = c("1","2","3","4","5","6","7","8","9","10","11","12","12+"))
+
+#unique location
+num_of_locations$location_range[num_of_locations$location_range > 6] <- 7
+num_of_locations$location_range <- factor(num_of_locations$location_range,
+                                          levels = c(1,2,3,4,5,6,7),
+                                          labels = c("1","2","3","4","5","6","7+"))
+#unique location
+
 num_of_locations$age_range <- age_range_rep
 agelocation <- table(num_of_locations$location_range,num_of_locations$age_range)
 lacationage <- table(num_of_locations$age_range,num_of_locations$location_range)
 par(mar=c(5.1, 4.1, 4.1, 3.1), xpd=TRUE)
+boxplot(location_range ~ age_range, data = num_of_locations)
 barplot(agelocation, main="Age range and locations",
         xlab="Age range", ylab = "How many locations has been to(Frequency)",
-        col=c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink","darkred","cornsilk"),
+        col=c("darkblue","red","orange","yellow","green","blue","purple"),
         beside=TRUE)
 text.legend=row.names(agelocation)
-col2 <- c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink","darkred","cornsilk")
+col2 <- c("darkblue","red","orange","yellow","green","blue","purple")
 legend("topright",pch=c(15,15,16,16),legend=text.legend,col=col2,bty="n",ncol = 1,,inset=c(-0.1,0))
 
 barplot(agelocation, main="Age range and locations",
@@ -329,7 +347,7 @@ legend("topright",pch=c(15),legend=text.legend,col=col2,bty="n",ncol = 1,inset=c
 
 barplot(lacationage, main="Age range and locations",
         xlab="Number of locations", ylab = "Frequency",
-        col=c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray"),
+        col=c("darkblue","red","orange","yellow","green","blue"),
         beside=TRUE)
 text.legend=row.names(lacationage)
 col2 <- c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray")
@@ -350,7 +368,7 @@ barplot(agelocation_prop1, main="Proportion age range and locations",
         col=c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink","darkred","cornsilk"))
 text.legend=row.names(agelocation_prop1)
 col2 <- c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink","darkred","cornsilk")
-legend("topright",pch=c(15),legend=text.legend,col=col2,bty="n",ncol = 1,inset=c(-0.25,0))
+legend("topright",pch=c(15),legend=text.legend,col=col2,bty="n",ncol = 1,inset=c(-0.1,0))
 
 lacationage_prop1 <- prop.table(lacationage,2)
 barplot(lacationage_prop1, main="Probabilities age range and locations",
@@ -358,7 +376,7 @@ barplot(lacationage_prop1, main="Probabilities age range and locations",
         col=c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink","darkred","cornsilk"))
 text.legend=row.names(lacationage_prop1)
 col2 <- c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink","darkred","cornsilk")
-legend("topright",pch=c(15),legend=text.legend,col=col2,bty="n",ncol = 1,inset=c(-0.1,0))
+legend("topright",pch=c(15),legend=text.legend,col=col2,bty="n",ncol = 1,inset=c(-0.12,0))
 
 
 # Relationship between age and num of location types
@@ -372,28 +390,35 @@ num_of_locationTypes
 num_of_locationTypes$age <- encounter_subset$Age
 plot(num_of_locationTypes$X1L~num_of_locationTypes$age,xlab = "Age",ylab = "Number of location types")
 
+num_of_locationTypes$location_type_range <- num_of_locationTypes$X1L
+num_of_locationTypes$location_type_range[num_of_locations$location_type_range > 5] <- 6
+num_of_locationTypes$location_type_range <- factor(num_of_locationTypes$location_type_range,
+                                          levels = c(1,2,3,4,5,6),
+                                          labels = c("1","2","3","4","5","6+"))
+
 num_of_locationTypes$age_range <- age_range_rep
 
-agetype <- table(num_of_locationTypes$X1L,num_of_locationTypes$age_range)
-typeage <- table(num_of_locationTypes$age_range,num_of_locationTypes$X1L)
+agetype <- table(num_of_locationTypes$location_type_range,num_of_locationTypes$age_range)
+typeage <- table(num_of_locationTypes$age_range,num_of_locationTypes$location_type_range)
+boxplot(location_type_range ~ age_range, data = num_of_locationTypes)
 barplot(agetype, main="Age range and location types",
         xlab="Age range", ylab = "Frequency",
-        col=c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray"),
+        col=c("darkblue","red","orange","yellow","green","blue"),
         beside=TRUE)
 text.legend=row.names(agetype)
-col2 <- c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray")
+col2 <- c("darkblue","red","orange","yellow","green","blue","purple")
 legend("topright",pch=c(15),legend=text.legend,col=col2,bty="n",ncol = 1,inset=c(0.1,0))
 
 barplot(agetype, main="Age range and location types",
         xlab="Age range", ylab = "Frequency",
-        col=c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray"))
+        col=c("darkblue","red","orange","yellow","green","blue"))
 text.legend=row.names(agetype)
 col2 <- c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray")
 legend("topright",pch=c(15),legend=text.legend,col=col2,bty="n",ncol = 1,inset=c(0.1,0))
 
 barplot(typeage, main="Age range and location types",
         xlab="Number of location types", ylab = "Frequency",
-        col=c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray"),
+        col=c("darkblue","red","orange","yellow","green","blue"),
         beside=TRUE)
 text.legend=row.names(typeage)
 col2 <- c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray")
@@ -420,39 +445,41 @@ barplot(typeage_prop, main="Probabilities age range and locations",
         col=c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink","darkred","cornsilk"))
 text.legend=row.names(typeage_prop)
 col2 <- c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink","darkred","cornsilk")
-legend("topright",pch=c(15),legend=text.legend,col=col2,bty="n",ncol = 1,inset=c(-0.1,0))
+legend("topright",pch=c(15),legend=text.legend,col=col2,bty="n",ncol = 1,inset=c(-0.12,0))
 
 # relationship between gender and number of locations
 num_of_locations$gender <- encounter_subset$Gender
 num_of_locations$gender <- factor(num_of_locations$gender,
                                   levels = c(1,2),
                                   labels = c("Male","Female"))
+
+boxplot(location_range~gender, data = num_of_locations)
+
+# barplot(genderlocation,main = "Gender and num of locations", 
+#         xlab = "Locations", ylab = "Frequency",
+#         col = c("darkblue","red"),
+#         beside = TRUE)
+# text.legend=row.names(genderlocation)
+# col2 <- c("darkblue","red")
+# legend("topright",pch=c(15),legend=text.legend,col=col2,bty="n",ncol = 1,inset=c(0.1,0))
+# 
+# barplot(locationgender,main = "Gender and num of locations", 
+#         xlab = "Locations", ylab = "Frequency",
+#         col=c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink","darkred","cornsilk"),
+#         beside = TRUE)
+# text.legend=row.names(locaitongender)
+# col2 <- c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink","darkred","cornsilk")
+# legend("topright",pch=c(15),legend=text.legend,col=col2,bty="n",ncol = 1,inset=c(-0.1,0))
+
 genderlocation <- table(num_of_locations$gender,num_of_locations$location_range)
 locationgender <- table(num_of_locations$location_range,num_of_locations$gender)
-
-barplot(genderlocation,main = "Gender and num of locations", 
-        xlab = "Locations", ylab = "Frequency",
-        col = c("darkblue","red"),
-        beside = TRUE)
-text.legend=row.names(genderlocation)
-col2 <- c("darkblue","red")
-legend("topright",pch=c(15),legend=text.legend,col=col2,bty="n",ncol = 1,inset=c(0.1,0))
-
-barplot(locationgender,main = "Gender and num of locations", 
-        xlab = "Locations", ylab = "Frequency",
-        col=c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink","darkred","cornsilk"),
-        beside = TRUE)
-text.legend=row.names(locaitongender)
-col2 <- c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink","darkred","cornsilk")
-legend("topright",pch=c(15),legend=text.legend,col=col2,bty="n",ncol = 1,inset=c(-0.1,0))
-
 genderlocation_prop <- prop.table(genderlocation,2)
 barplot(genderlocation_prop,main = "Gender and num of locations", 
         xlab = "Locations", ylab = "Probabilities",
         col=c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink","darkred","cornsilk"))
 text.legend=row.names(genderlocation_prop)
 col2 <- c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink","darkred","cornsilk")
-legend("topright",pch=c(15),legend=text.legend,col=col2,bty="n",ncol = 1,inset=c(-0.07,0))
+legend("topright",pch=c(15),legend=text.legend,col=col2,bty="n",ncol = 1,inset=c(-0.14,0))
 
 locationgender_prop <- prop.table(locationgender,2)
 barplot(locationgender_prop,main = "Gender and num of locations", 
@@ -468,9 +495,9 @@ num_of_locationTypes$gender <- encounter_subset$Gender
 num_of_locationTypes$gender <- factor(num_of_locationTypes$gender,
                                   levels = c(1,2),
                                   labels = c("Male","Female"))
-gendertype <- table(num_of_locationTypes$gender,num_of_locationTypes$X1L)
-typegender <- table(num_of_locationTypes$X1L,num_of_locationTypes$gender)
-
+gendertype <- table(num_of_locationTypes$gender,num_of_locationTypes$location_type_range)
+typegender <- table(num_of_locationTypes$location_type_range,num_of_locationTypes$gender)
+boxplot(X1L~gender, data = num_of_locationTypes)
 barplot(gendertype,main = "Gender and num of location Types", 
         xlab = "Location Types",ylab = "Frequency",
         col = c("darkblue","red"),
@@ -493,7 +520,7 @@ barplot(gendertype_prop,main = "Gender and num of location Types",
         col=c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink","darkred","cornsilk"))
 text.legend=row.names(gendertype_prop)
 col2 <- c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink","darkred","cornsilk")
-legend("topright",pch=c(15),legend=text.legend,col=col2,bty="n",ncol = 1,inset=c(-0.07,0))
+legend("topright",pch=c(15),legend=text.legend,col=col2,bty="n",ncol = 1,inset=c(-0.14,0))
 
 typegender_prop <- prop.table(typegender,2)
 barplot(typegender_prop,main = "Gender and num of location Types", 
@@ -501,7 +528,7 @@ barplot(typegender_prop,main = "Gender and num of location Types",
         col=c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink","darkred","cornsilk"))
 text.legend=row.names(typegender_prop)
 col2 <- c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink","darkred","cornsilk")
-legend("topright",pch=c(15),legend=text.legend,col=col2,bty="n",ncol = 1,inset=c(-0.03,0))
+legend("topright",pch=c(15),legend=text.legend,col=col2,bty="n",ncol = 1,inset=c(-0.1,0))
 
 # unique location
 drop_transportation <- encounter[which(encounter$Location_Type != "Private Transport (private or rented car, motorbike)"),]
@@ -614,6 +641,10 @@ barplot(uniquegender_prop,main = "Gender and num of unique location",
 text.legend=row.names(uniquegender_prop)
 col2 <- c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink","darkred","cornsilk")
 legend("topright",pch=c(15),legend=text.legend,col=col2,bty="n",ncol = 1,inset=c(-0.03,0))
+
+
+
+
 
 # The relationship between duration and different location types(plot)
 encounter_duration <- encounter[which(encounter$Duration!="NULL"), ]
