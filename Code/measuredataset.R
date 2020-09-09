@@ -1,4 +1,6 @@
 install.packages("ggplot2")
+install.packages("igraph")
+library(igraph)
 library(infotheo)
 library(plyr)
 library(lubridate)
@@ -240,7 +242,8 @@ index <- duplicated(encounter[,1])
 encounter_subset <- encounter[!index,]
 (nrow(encounter_subset))
 encounter_subset
-encounter_subset <- encounter_subset[(encounter_subset.c1!=12)]
+encounter_subset <- encounter_subset[-which(encounter_subset$Age==-2),]
+
 
 # Relationship between age and num of locations
 age_range_rep <- encounter_subset$Age
@@ -307,10 +310,18 @@ for(subject in encounter_subset$Subject){
   num_of_locations <- rbind(num_of_locations, nrow(encounter_subset_locations_unique[which(encounter_subset_locations_unique$Subject == subject), ]))
   #nrow(encounter[which(encounter$Subject == subject), ])
 }
+
+#how many locations one has been to
+for(subject in encounter_subset$Subject){
+  #print(subject)
+  num_of_locations <- rbind(num_of_locations, nrow(encounter[which(encounter$Subject == subject), ]))
+  #nrow(encounter[which(encounter$Subject == subject), ])
+}
+
 num_of_locations$age <- encounter_subset$Age
 nrow(num_of_locations)
 plot(num_of_locations$X1L~num_of_locations$age,xlab = "Age",ylab = "Number of locations")
-
+boxplot(num_of_locations$age,horizontal = TRUE)
 num_of_locations$location_range <- num_of_locations$X1L
 num_of_locations$location_range[num_of_locations$location_range > 12] <- 13
 num_of_locations$location_range <- factor(num_of_locations$location_range,
@@ -318,8 +329,8 @@ num_of_locations$location_range <- factor(num_of_locations$location_range,
                                           labels = c("1","2","3","4","5","6","7","8","9","10","11","12","12+"))
 
 #unique location
-num_of_locations$location_range[num_of_locations$location_range > 6] <- 7
-num_of_locations$location_range <- factor(num_of_locations$location_range,
+num_of_locations$location_unique_range[num_of_locations$location_range > 6] <- 7
+num_of_locations$location_unique_range <- factor(num_of_locations$location_range,
                                           levels = c(1,2,3,4,5,6,7),
                                           labels = c("1","2","3","4","5","6","7+"))
 #unique location
@@ -660,14 +671,15 @@ encounter_type_duration$Location_Type <- factor(encounter_type_duration$Location
                                              "Study (Uni, school, kindergarden, childcare centre etc)",
                                              "Arts and culture (cinema, library, gigs, museum, theatre etc.) ",
                                              "Public Transport (train, tram, bus or taxi)"),
-                                  labels = c("H","PriT",
-                                             "RT",
-                                             "CJ",
-                                             "SR","Other","Work",
-                                             "PS",
-                                             "Study",
-                                             "AC",
-                                             "PubT"))
+                                  labels = c("home","travel",
+                                             "retail",
+                                             "travel",
+                                             "entertainment","other","Work",
+                                             "entertainment",
+                                             "study",
+                                             "entertainment",
+                                             "travel"))
+
 plot(encounter_type_duration$Duration ~ encounter_type_duration$Location_Type)
 Location_Type <- data.frame(sapply(encounter_type_duration$Location_Type, function(x) { if(is.factor(x)) {
   as.character(x)
@@ -684,28 +696,32 @@ Duration <- data.frame(sapply(encounter_type_duration$Duration, function(x) { if
 }))
 encounter_type_duration$Location_Type <- Location_Type$sapply.encounter_type_duration.Location_Type..function.x...
 encounter_type_duration$Duration <- Duration$sapply.encounter_type_duration.Duration..function.x...
-boxplot(encounter_type_duration$Duration ~ encounter_type_duration$Location_Type, xlab = "location types",ylab = "Duration of staying at on different location type(mins)")
+install.packages("plyr")
+library(plyr)
+bev <- aggregate(Duration ~ Location_Type + Age + Gender + Subject, data = encounter_type_duration, sum)
+boxplot(bev$Duration ~ bev$Location_Type, xlab = "location types",ylab = "Duration of staying at on different location type(mins)")
 plot(encounter_type_duration$Duration ~ encounter_type_duration$Location_Type)
 
-encounter_type_duration$Duration[which(encounter_type_duration$Duration >= 0 & encounter_type_duration$Duration < 60)] <- 1
-encounter_type_duration$Duration[which(encounter_type_duration$Duration >= 60 & encounter_type_duration$Duration < 120)] <- 2
-encounter_type_duration$Duration[which(encounter_type_duration$Duration >= 120 & encounter_type_duration$Duration < 180)] <- 3
-encounter_type_duration$Duration[which(encounter_type_duration$Duration >= 180 & encounter_type_duration$Duration < 240)] <- 4
-encounter_type_duration$Duration[which(encounter_type_duration$Duration >= 240 & encounter_type_duration$Duration < 300)] <- 5
-encounter_type_duration$Duration[which(encounter_type_duration$Duration >= 300 & encounter_type_duration$Duration < 360)] <- 6
-encounter_type_duration$Duration[which(encounter_type_duration$Duration >= 360 & encounter_type_duration$Duration < 420)] <- 7
-encounter_type_duration$Duration[which(encounter_type_duration$Duration >= 420)] <- "more than 7"
+bev$Duration[which(bev$Duration >= 0 & bev$Duration < 60)] <- 1
+bev$Duration[which(bev$Duration >= 60 & bev$Duration < 120)] <- 2
+bev$Duration[which(bev$Duration >= 120 & bev$Duration < 180)] <- 3
+bev$Duration[which(bev$Duration >= 180 & bev$Duration < 240)] <- 4
+bev$Duration[which(bev$Duration >= 240)] <- "5+"
+# encounter_type_duration$Duration[which(encounter_type_duration$Duration >= 240 & encounter_type_duration$Duration < 300)] <- 5
+# encounter_type_duration$Duration[which(encounter_type_duration$Duration >= 300 & encounter_type_duration$Duration < 360)] <- 6
+# encounter_type_duration$Duration[which(encounter_type_duration$Duration >= 360 & encounter_type_duration$Duration < 420)] <- 7
+# encounter_type_duration$Duration[which(encounter_type_duration$Duration >= 420)] <- "more than 7"
 
-type_duration <- table(encounter_type_duration$Location_Type,encounter_type_duration$Duration)
-duration_type <- table(encounter_type_duration$Duration,encounter_type_duration$Location_Type)
+type_duration <- table(bev$Location_Type,bev$Duration)
+duration_type <- table(bev$Duration,bev$Location_Type)
 
 barplot(type_duration,main = "Location type and duration", 
         xlab = "Duration",ylab = "Frequency",
-        col=c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink"),
+        col=c("darkblue","red","orange","yellow","green","blue","purple"),
         beside = TRUE)
 text.legend=row.names(type_duration)
 col2 <- c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink")
-legend("topright",pch=c(15),legend=text.legend,col=col2,bty="n",ncol = 1,inset=c(0.1,0))
+legend("topright",pch=c(15),legend=text.legend,col=col2,bty="n",ncol = 1,inset=c(0.01,0))
 
 barplot(type_duration,main = "Location type and duration", 
         xlab = "Duration",ylab = "Frequency",
@@ -714,9 +730,18 @@ text.legend=row.names(type_duration)
 col2 <- c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink")
 legend("topright",pch=c(15),legend=text.legend,col=col2,bty="n",ncol = 1,inset=c(0.1,0))
 
+
+type_duration_prop <- prop.table(type_duration,2)
+barplot(type_duration_prop,main = "", 
+        xlab = "Location", ylab = "Proportion",
+        col=c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink","darkred","cornsilk"))
+text.legend=row.names(uniquegender_prop)
+col2 <- c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink","darkred","cornsilk")
+legend("topright",pch=c(15),legend=text.legend,col=col2,bty="n",ncol = 1,inset=c(-0.1,0))
+
 barplot(duration_type,main = "Location type and duration", 
         xlab = "Location type",ylab = "Frequency",
-        col=c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3"),
+        col=c("darkblue","red","orange","yellow","green"),
         beside = TRUE)
 text.legend=row.names(duration_type)
 col2 <- c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3")
@@ -729,6 +754,196 @@ text.legend=row.names(duration_type)
 col2 <- c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3")
 legend("topright",pch=c(15),legend=text.legend,col=col2,bty="n",ncol = 1,inset=c(0.1,0))
 
+
+duration_type_prop <- prop.table(duration_type,2)
+barplot(duration_type_prop,main = "", 
+        xlab = "Location", ylab = "Proportion",
+        col=c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink","darkred","cornsilk"))
+text.legend=row.names(uniquegender_prop)
+col2 <- c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink","darkred","cornsilk")
+legend("topright",pch=c(15),legend=text.legend,col=col2,bty="n",ncol = 1,inset=c(-0.03,0))
+
+
+
+par(mfcol=c(2,1))
+bev_2 <- bev[which(bev$Gender == 2), ]
+bev_1 <- bev[which(bev$Gender == 1), ]
+boxplot(bev_2$Duration ~ bev_2$Location_Type, xlab = "female")
+boxplot(bev_1$Duration ~ bev_1$Location_Type, xlab = "male")
+bev_2$Duration[which(bev_2$Duration >= 0 & bev_2$Duration < 60)] <- 1
+bev_2$Duration[which(bev_2$Duration >= 60 & bev_2$Duration < 120)] <- 2
+bev_2$Duration[which(bev_2$Duration >= 120 & bev_2$Duration < 180)] <- 3
+bev_2$Duration[which(bev_2$Duration >= 180 & bev_2$Duration < 240)] <- 4
+bev_2$Duration[which(bev_2$Duration >= 240)] <- "5+"
+
+bev_1$Duration[which(bev_1$Duration >= 0 & bev_1$Duration < 60)] <- 1
+bev_1$Duration[which(bev_1$Duration >= 60 & bev_1$Duration < 120)] <- 2
+bev_1$Duration[which(bev_1$Duration >= 120 & bev_1$Duration < 180)] <- 3
+bev_1$Duration[which(bev_1$Duration >= 180 & bev_1$Duration < 240)] <- 4
+bev_1$Duration[which(bev_1$Duration >= 240)] <- "5+"
+
+type_duration_1 <- table(bev_1$Location_Type,bev_1$Duration)
+duration_type_1 <- table(bev_1$Duration,bev_1$Location_Type)
+
+type_duration_2 <- table(bev_2$Location_Type,bev_2$Duration)
+duration_type_2 <- table(bev_2$Duration,bev_2$Location_Type)
+
+duration_type_prop <- prop.table(type_duration_1,2)
+barplot(duration_type_prop,main = "", 
+        col=c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink","darkred","cornsilk"))
+text.legend=row.names(uniquegender_prop)
+col2 <- c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink","darkred","cornsilk")
+legend("topright",pch=c(15),legend=text.legend,col=col2,bty="n",ncol = 1,inset=c(-0.03,0))
+
+duration_type_prop <- prop.table(type_duration_2,2)
+barplot(duration_type_prop,main = "", 
+        col=c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink","darkred","cornsilk"))
+text.legend=row.names(uniquegender_prop)
+col2 <- c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink","darkred","cornsilk")
+legend("topright",pch=c(15),legend=text.legend,col=col2,bty="n",ncol = 1,inset=c(-0.03,0))
+
+age_range_rep <- bev$Age
+i = 1
+while(i<=length(age_range_rep)){
+  age = age_range_rep[i]
+  if(age>=18&&age<=29)
+  {
+    age_range_rep[i] = "18-29"
+  }
+  else if(age>=30&&age<=49){
+    age_range_rep[i] = "30-49"
+  }
+  else if(age>=50&&age<=59)
+  {
+    age_range_rep[i] = "50-59"
+  }
+  else if(age>=60&&age<=69)
+  {
+    age_range_rep[i] = "60-69"
+  }
+  else if(age>=70)
+  {
+    age_range_rep[i] = "70+"
+  }
+  i = i+1
+}
+bev$Age <- age_range_rep
+
+par(mfcol=c(2,1))
+bev_1829 <- bev[which(bev$Age == "18-29"), ]
+bev_3049 <- bev[which(bev$Age == "30-49"), ]
+bev_5059 <- bev[which(bev$Age == "50-59"), ]
+bev_6069 <- bev[which(bev$Age == "60-69"), ]
+bev_70 <- bev[which(bev$Age == "70+"), ]
+
+boxplot(bev_1829$Duration ~ bev_1829$Location_Type, xlab = "18-29")
+boxplot(bev_3049$Duration ~ bev_3049$Location_Type, xlab = "30-49")
+boxplot(bev_5059$Duration ~ bev_5059$Location_Type, xlab = "50-59")
+boxplot(bev_6069$Duration ~ bev_6069$Location_Type, xlab = "60-69")
+boxplot(bev_70$Duration ~ bev_70$Location_Type, xlab = "70+")
+
+type_duration_1829 <- table(bev_1829$Location_Type,bev_1829$Duration)
+type_duration_3049 <- table(bev_3049$Location_Type,bev_3049$Duration)
+type_duration_5059 <- table(bev_5059$Location_Type,bev_5059$Duration)
+type_duration_6069 <- table(bev_6069$Location_Type,bev_6069$Duration)
+type_duration_70 <- table(bev_70$Location_Type,bev_70$Duration)
+
+duration_type_1829 <- table(bev_1829$Duration,bev_1829$Location_Type)
+duration_type_3049 <- table(bev_3049$Duration,bev_3049$Location_Type)
+duration_type_5059 <- table(bev_5059$Duration,bev_5059$Location_Type)
+duration_type_6069 <- table(bev_6069$Duration,bev_6069$Location_Type)
+duration_type_70 <- table(bev_70$Duration,bev_70$Location_Type)
+
+duration_type_prop <- prop.table(type_duration_1829,2)
+barplot(duration_type_prop,main = "", xlab = "18-29",
+        col=c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink","darkred","cornsilk"))
+text.legend=row.names(duration_type_prop)
+col2 <- c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink","darkred","cornsilk")
+legend("topright",pch=c(15),legend=text.legend,col=col2,bty="n",ncol = 1,inset=c(-0.03,0))
+
+duration_type_prop <- prop.table(type_duration_3049,2)
+barplot(duration_type_prop,main = "", xlab = "30-49",
+        col=c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink","darkred","cornsilk"))
+text.legend=row.names(duration_type_prop)
+col2 <- c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink","darkred","cornsilk")
+legend("topright",pch=c(15),legend=text.legend,col=col2,bty="n",ncol = 1,inset=c(-0.03,0))
+
+duration_type_prop <- prop.table(type_duration_5059,2)
+barplot(duration_type_prop,main = "", xlab = "50-59",
+        col=c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink","darkred","cornsilk"))
+text.legend=row.names(duration_type_prop)
+col2 <- c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink","darkred","cornsilk")
+legend("topright",pch=c(15),legend=text.legend,col=col2,bty="n",ncol = 1,inset=c(-0.03,0))
+
+duration_type_prop <- prop.table(type_duration_6069,2)
+barplot(duration_type_prop,main = "", xlab = "60-69",
+        col=c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink","darkred","cornsilk"))
+text.legend=row.names(duration_type_prop)
+col2 <- c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink","darkred","cornsilk")
+legend("topright",pch=c(15),legend=text.legend,col=col2,bty="n",ncol = 1,inset=c(-0.03,0))
+
+duration_type_prop <- prop.table(type_duration_70,2)
+barplot(duration_type_prop,main = "", xlab = "70+",
+        col=c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink","darkred","cornsilk"))
+text.legend=row.names(duration_type_prop)
+col2 <- c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink","darkred","cornsilk")
+legend("topright",pch=c(15),legend=text.legend,col=col2,bty="n",ncol = 1,inset=c(-0.03,0))
+
+
+duration_type_prop <- prop.table(duration_type_1829,2)
+barplot(duration_type_prop,main = "", xlab = "18-29",
+        col=c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink","darkred","cornsilk"))
+text.legend=row.names(duration_type_prop)
+col2 <- c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink","darkred","cornsilk")
+legend("topright",pch=c(15),legend=text.legend,col=col2,bty="n",ncol = 1,inset=c(-0.03,0))
+
+duration_type_prop <- prop.table(duration_type_3049,2)
+barplot(duration_type_prop,main = "", xlab = "30-49",
+        col=c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink","darkred","cornsilk"))
+text.legend=row.names(duration_type_prop)
+col2 <- c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink","darkred","cornsilk")
+legend("topright",pch=c(15),legend=text.legend,col=col2,bty="n",ncol = 1,inset=c(-0.03,0))
+
+duration_type_prop <- prop.table(duration_type_5059,2)
+barplot(duration_type_prop,main = "", xlab = "50-59",
+        col=c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink","darkred","cornsilk"))
+text.legend=row.names(duration_type_prop)
+col2 <- c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink","darkred","cornsilk")
+legend("topright",pch=c(15),legend=text.legend,col=col2,bty="n",ncol = 1,inset=c(-0.03,0))
+
+duration_type_prop <- prop.table(duration_type_6069,2)
+barplot(duration_type_prop,main = "", xlab = "60-69",
+        col=c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink","darkred","cornsilk"))
+text.legend=row.names(duration_type_prop)
+col2 <- c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink","darkred","cornsilk")
+legend("topright",pch=c(15),legend=text.legend,col=col2,bty="n",ncol = 1,inset=c(-0.03,0))
+
+duration_type_prop <- prop.table(duration_type_70,2)
+barplot(duration_type_prop,main = "", xlab = "70+",
+        col=c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink","darkred","cornsilk"))
+text.legend=row.names(duration_type_prop)
+col2 <- c("darkblue","red","orange","yellow","green","blue","purple","darkslategray3","gray","black","pink","darkred","cornsilk")
+legend("topright",pch=c(15),legend=text.legend,col=col2,bty="n",ncol = 1,inset=c(-0.03,0))
+
+bev$age_range <- age_range_rep
+par(mfcol=c(2,1))
+bev_home <- bev[which(bev$Location_Type == "home"), ]
+bev_travel <- bev[which(bev$Location_Type == "travel"), ]
+bev_entertainment <- bev[which(bev$Location_Type == "entertainment"), ]
+bev_other <- bev[which(bev$Location_Type == "other"), ]
+bev_retail <- bev[which(bev$Location_Type == "retail"), ]
+bev_study <- bev[which(bev$Location_Type == "study"), ]
+bev_work <- bev[which(bev$Location_Type == "Work"), ]
+
+boxplot(bev_home$Duration ~ bev_home$age_range, xlab = "home")
+boxplot(bev_travel$Duration ~ bev_travel$age_range, xlab = "travel")
+boxplot(bev_entertainment$Duration ~ bev_entertainment$age_range, xlab = "entertainment")
+boxplot(bev_other$Duration ~ bev_other$age_range, xlab = "other")
+boxplot(bev_retail$Duration ~ bev_retail$age_range, xlab = "retail")
+boxplot(bev_study$Duration ~ bev_study$age_range, xlab = "study")
+boxplot(bev_work$Duration ~ bev_work$age_range, xlab = "work")
+
+plot(bev_home$Duration~bev_home$Age)
 
 
 
